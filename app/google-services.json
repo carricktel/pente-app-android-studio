@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "178920841951",
+    "firebase_url": "https://penteads.firebaseio.com",
+    "project_id": "penteads",
+    "storage_bucket": "penteads.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:178920841951:android:81849435f45e54c6",
+        "android_client_info": {
+          "package_name": "com.appyapps.appyapps.pente"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "178920841951-5ljo1mokvkiq35re21cf4ogf76p045la.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdPn5MZbg3MISgC-_Vt6jZr18NJZrwvN8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

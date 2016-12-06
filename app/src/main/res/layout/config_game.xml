@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/configgame">
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/singleMatch"
+        android:src="@drawable/singlematchclicked"
+        android:onClick="onSingleMatchClick"
+        android:background="#2c5274"
+        android:layout_marginTop="148dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginStart="27dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/fiftypointsbutton"
+        android:onClick="onFiftyPointsClick"
+        android:background="#2c5274"
+        android:id="@+id/fiftyPoints"
+        android:layout_alignTop="@+id/twentyOnePoints"
+        android:layout_toRightOf="@+id/twentyOnePoints"
+        android:layout_toEndOf="@+id/twentyOnePoints" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/twentyonepointsbutton"
+        android:onClick="onTwentyOnePointsClick"
+        android:background="#2c5274"
+        android:id="@+id/twentyOnePoints"
+        android:layout_alignTop="@+id/singleMatch"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/humanicon"
+        android:onClick="onP1IconClick"
+        android:background="#2c5274"
+        android:id="@+id/humanIcon"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/twentyOnePoints"
+        android:layout_alignLeft="@+id/singleMatch"
+        android:layout_alignStart="@+id/singleMatch" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/humanname"
+        android:onClick="onHumanNameClick"
+        android:background="#2c5274"
+        android:id="@+id/humanName"
+        android:layout_alignTop="@+id/humanIcon"
+        android:layout_toRightOf="@+id/humanIcon"
+        android:layout_toEndOf="@+id/humanIcon" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/colorwhite"
+        android:onClick="onP1ColorClick"
+        android:background="#2c5274"
+        android:id="@+id/humancolor"
+        android:layout_alignTop="@+id/humanName"
+        android:layout_toRightOf="@+id/humanName"
+        android:layout_toEndOf="@+id/humanName" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ailvl1text"
+        android:background="#2c5274"
+        android:id="@+id/aiName"
+        android:layout_alignTop="@+id/aiIcon"
+        android:layout_toRightOf="@+id/aiIcon"
+        android:layout_toEndOf="@+id/aiIcon" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/colorblack"
+        android:onClick="onP2ColorClick"
+        android:background="#2c5274"
+        android:id="@+id/aicolor"
+        android:layout_below="@+id/humancolor"
+        android:layout_toRightOf="@+id/humanName"
+        android:layout_toEndOf="@+id/humanName"
+        android:layout_marginTop="17dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ailvl1icon"
+        android:onClick="onP2IconClick"
+        android:background="#2c5274"
+        android:id="@+id/aiIcon"
+        android:layout_alignTop="@+id/aicolor"
+        android:layout_alignLeft="@+id/humanIcon"
+        android:layout_alignStart="@+id/humanIcon" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/configplaybutton"
+        android:onClick="onConfigPlayClick"
+        android:background="#2c5274"
+        android:id="@+id/configPlay"
+        android:layout_marginTop="14dp"
+        android:layout_below="@+id/aiName"
+        android:layout_alignRight="@+id/aicolor"
+        android:layout_alignEnd="@+id/aicolor" />
+
+    <ImageButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/configbackbutton"
+    android:onClick="onConfigBackClick"
+    android:background="#2c5274"
+    android:id="@+id/configBack"
+        android:layout_alignTop="@+id/configPlay"
+        android:layout_alignLeft="@+id/aiIcon"
+        android:layout_alignStart="@+id/aiIcon" />
+</RelativeLayout>
+
