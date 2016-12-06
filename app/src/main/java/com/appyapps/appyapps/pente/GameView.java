@@ -363,6 +363,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceCreated(SurfaceHolder surfaceholder) {
         canvas = null;
+        computerPlayer.setDifficulty(pente.player2Type);
         surfaceHolder = surfaceholder;
         getDrawableDimensions(canvas, surfaceHolder);
         setNewDrawableDimensions();

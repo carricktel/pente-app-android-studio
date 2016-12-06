@@ -26,7 +26,6 @@ public class PenteComputerPlayer {
     }
 
     public void setDifficulty(int level){
-        //FIXME
         if (level == 1){
             Depth = 3;
             MovesQueueLength = 10;
@@ -1097,14 +1096,10 @@ public class PenteComputerPlayer {
                     isCoordInArrayList(upper3,scenario.whiteMoves) &&
                     !isCoordInArrayList(lower,scenario.whiteMoves) &&
                     !isCoordInArrayList(upper4,scenario.whiteMoves) &&
-                    ((!isCoordInArrayList(upper4,scenario.blackMoves) &&
-                            !isCoordInArrayList(upper4,scenario.whiteMoves) &&
-                            !isCoordInArrayList(lower,scenario.blackMoves) &&
-                            !isCoordInArrayList(lower,scenario.whiteMoves)) ||
-                            (isCoordInArrayList(upper4,scenario.blackMoves) &&
-                                    !isCoordInArrayList(lower,scenario.blackMoves)) ||
-                            (!isCoordInArrayList(upper4,scenario.blackMoves) &&
-                                    isCoordInArrayList(lower,scenario.blackMoves)))){
+                    ((isCoordInArrayList(upper4,scenario.blackMoves) &&
+                    !isCoordInArrayList(lower,scenario.blackMoves)) ||
+                    (!isCoordInArrayList(upper4,scenario.blackMoves) &&
+                    isCoordInArrayList(lower,scenario.blackMoves)))){
                 PenteConfigurations config1 = new PenteConfigurations();
                 config1.confType = 3;
                 config1.direction = 90;
@@ -1127,14 +1122,10 @@ public class PenteComputerPlayer {
                     isCoordInArrayList(upperRight3,scenario.whiteMoves) &&
                     !isCoordInArrayList(upperRight4,scenario.whiteMoves) &&
                     !isCoordInArrayList(lowerLeft,scenario.whiteMoves) &&
-                    ((!isCoordInArrayList(upperRight4,scenario.blackMoves) &&
-                            !isCoordInArrayList(upperRight4,scenario.whiteMoves) &&
-                            !isCoordInArrayList(lowerLeft,scenario.blackMoves) &&
-                            !isCoordInArrayList(lowerLeft,scenario.whiteMoves)) ||
-                            (isCoordInArrayList(upperRight4,scenario.blackMoves) &&
-                                    !isCoordInArrayList(lowerLeft,scenario.blackMoves)) ||
-                            (!isCoordInArrayList(upperRight4,scenario.blackMoves) &&
-                                    isCoordInArrayList(lowerLeft,scenario.blackMoves)))){
+                    ((isCoordInArrayList(upperRight4,scenario.blackMoves) &&
+                            !isCoordInArrayList(lowerLeft,scenario.blackMoves)) ||
+                    (!isCoordInArrayList(upperRight4,scenario.blackMoves) &&
+                            isCoordInArrayList(lowerLeft,scenario.blackMoves)))){
                 PenteConfigurations config2 = new PenteConfigurations();
                 config2.confType = 3;
                 config2.direction = 45;
@@ -1158,11 +1149,7 @@ public class PenteComputerPlayer {
                     isCoordInArrayList(right3,scenario.whiteMoves) &&
                     !isCoordInArrayList(right4,scenario.whiteMoves) &&
                     !isCoordInArrayList(left,scenario.whiteMoves) &&
-                    ((!isCoordInArrayList(right4,scenario.whiteMoves) &&
-                            !isCoordInArrayList(right4,scenario.blackMoves) &&
-                            !isCoordInArrayList(left,scenario.blackMoves) &&
-                            !isCoordInArrayList(left,scenario.whiteMoves)) ||
-                            (isCoordInArrayList(right4,scenario.blackMoves) &&
+                    ((isCoordInArrayList(right4,scenario.blackMoves) &&
                                     !isCoordInArrayList(left,scenario.blackMoves)) ||
                             (!isCoordInArrayList(right4,scenario.blackMoves) &&
                                     isCoordInArrayList(left,scenario.blackMoves)))){
@@ -1188,11 +1175,7 @@ public class PenteComputerPlayer {
                     isCoordInArrayList(lowerRight3,scenario.whiteMoves) &&
                     !isCoordInArrayList(lowerRight4,scenario.whiteMoves) &&
                     !isCoordInArrayList(upperLeft,scenario.whiteMoves) &&
-                    ((!isCoordInArrayList(lowerRight4,scenario.whiteMoves) &&
-                            !isCoordInArrayList(lowerRight4,scenario.blackMoves) &&
-                            !isCoordInArrayList(upperLeft,scenario.blackMoves) &&
-                            !isCoordInArrayList(upperLeft,scenario.whiteMoves)) ||
-                            (isCoordInArrayList(lowerRight4,scenario.blackMoves) &&
+                    ((isCoordInArrayList(lowerRight4,scenario.blackMoves) &&
                                     !isCoordInArrayList(upperLeft,scenario.blackMoves)) ||
                             (!isCoordInArrayList(lowerRight4,scenario.blackMoves) &&
                                     isCoordInArrayList(upperLeft,scenario.blackMoves)))){
@@ -1220,11 +1203,7 @@ public class PenteComputerPlayer {
                     isCoordInArrayList(upper3,scenario.blackMoves) &&
                     !isCoordInArrayList(upper4,scenario.blackMoves) &&
                     !isCoordInArrayList(lower,scenario.blackMoves) &&
-                    ((!isCoordInArrayList(upper4,scenario.blackMoves) &&
-                            !isCoordInArrayList(upper4,scenario.whiteMoves) &&
-                            !isCoordInArrayList(lower,scenario.whiteMoves) &&
-                            !isCoordInArrayList(lower,scenario.blackMoves)) ||
-                            (isCoordInArrayList(upper4,scenario.whiteMoves) &&
+                    ((isCoordInArrayList(upper4,scenario.whiteMoves) &&
                                     !isCoordInArrayList(lower,scenario.whiteMoves)) ||
                             (!isCoordInArrayList(upper4,scenario.whiteMoves) &&
                                     isCoordInArrayList(lower,scenario.whiteMoves)))){
@@ -1250,11 +1229,7 @@ public class PenteComputerPlayer {
                     isCoordInArrayList(upperRight3,scenario.blackMoves) &&
                     !isCoordInArrayList(upperRight4,scenario.blackMoves) &&
                     !isCoordInArrayList(lowerLeft,scenario.blackMoves) &&
-                    ((!isCoordInArrayList(upperRight4,scenario.blackMoves) &&
-                            !isCoordInArrayList(upperRight4,scenario.whiteMoves) &&
-                            !isCoordInArrayList(lowerLeft,scenario.whiteMoves) &&
-                            !isCoordInArrayList(lowerLeft,scenario.blackMoves))||
-                            (isCoordInArrayList(upperRight4,scenario.whiteMoves) &&
+                    ((isCoordInArrayList(upperRight4,scenario.whiteMoves) &&
                                     !isCoordInArrayList(lowerLeft,scenario.whiteMoves)) ||
                             (!isCoordInArrayList(upperRight4,scenario.whiteMoves) &&
                                     isCoordInArrayList(lowerLeft,scenario.whiteMoves)))){
@@ -1281,11 +1256,7 @@ public class PenteComputerPlayer {
                     isCoordInArrayList(right3,scenario.blackMoves) &&
                     !isCoordInArrayList(right4,scenario.blackMoves) &&
                     !isCoordInArrayList(left,scenario.blackMoves) &&
-                    ((!isCoordInArrayList(right4,scenario.blackMoves) &&
-                            !isCoordInArrayList(right4,scenario.whiteMoves) &&
-                            !isCoordInArrayList(left,scenario.whiteMoves) &&
-                            !isCoordInArrayList(left,scenario.blackMoves)) ||
-                            (isCoordInArrayList(right4,scenario.whiteMoves) &&
+                    ((isCoordInArrayList(right4,scenario.whiteMoves) &&
                                     !isCoordInArrayList(left,scenario.whiteMoves)) ||
                             (!isCoordInArrayList(right4,scenario.whiteMoves) &&
                                     isCoordInArrayList(left,scenario.whiteMoves)))){
@@ -1311,11 +1282,7 @@ public class PenteComputerPlayer {
                     isCoordInArrayList(lowerRight3,scenario.blackMoves) &&
                     !isCoordInArrayList(lowerRight4,scenario.blackMoves) &&
                     !isCoordInArrayList(upperLeft,scenario.blackMoves) &&
-                    ((!isCoordInArrayList(lowerRight4,scenario.blackMoves) &&
-                            !isCoordInArrayList(lowerRight4,scenario.whiteMoves) &&
-                            !isCoordInArrayList(upperLeft,scenario.whiteMoves) &&
-                            !isCoordInArrayList(upperLeft,scenario.blackMoves)) ||
-                            (isCoordInArrayList(lowerRight4,scenario.whiteMoves) &&
+                    ((isCoordInArrayList(lowerRight4,scenario.whiteMoves) &&
                                     !isCoordInArrayList(upperLeft,scenario.whiteMoves)) ||
                             (!isCoordInArrayList(lowerRight4,scenario.whiteMoves) &&
                                     isCoordInArrayList(upperLeft,scenario.whiteMoves)))){
