@@ -100,11 +100,13 @@ public class ConfigureGame extends Activity{
         if (p2IconNum == 1){
             iconBtn.setImageResource(R.drawable.ailvl2icon);
             p2IconNum = 2;
+            penteObj.setPlayerMode(0);
             penteObj.setPlayer2Type(2);
         }
         if (p2IconNum == 0 && wasClicked == false){
             iconBtn.setImageResource(R.drawable.ailvl1icon);
             p2IconNum = 1;
+            penteObj.setPlayerMode(0);
             penteObj.setPlayer2Type(1);
         }
         final int result = 1;

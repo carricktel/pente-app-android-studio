@@ -38,6 +38,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public float player2IconOriginWidth;
     public float player2IconOriginHeight;
 
+
     public Pente pente = PlayingGame.returnPente();
     public PenteComputerPlayer computerPlayer = new PenteComputerPlayer();
     public int[] userMove = new int[2];
@@ -186,8 +187,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             pente.calculateCurrentMatchScore();
             pente.isMatchOver = pente.determineIfMatchEnds();
             drawBoard();
-            if (pente.isMatchOver == true && !pente.isSingleMatch && pente.determineIfEndOfGame() == false) {
-                pente.setupNewMatch();
+            if (pente.isMatchOver == true && !pente.isSingleMatch /*&& pente.determineIfEndOfGame() == false*/){
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
@@ -225,7 +225,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                 pente.calculateCurrentMatchScore();
                 pente.isMatchOver = pente.determineIfMatchEnds();
                 drawBoard();
-                if (pente.isMatchOver == true && !pente.isSingleMatch && pente.determineIfEndOfGame() == false) {
+                if (pente.isMatchOver == true && !pente.isSingleMatch/* && pente.determineIfEndOfGame() == false*/) {
                     pente.setupNewMatch();
                     try {
                         Thread.sleep(2000);
@@ -293,8 +293,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-    public boolean touchInBounds(float[] coords){
-        return true;
+    public boolean touchInBounds(float[] coords)
+    {
+        if(coords[0] > widthTo0x0Coord && coords[0] < widthTo0x0Coord+gameboardLength && coords[1] > heightTo0x0Coord && coords[1] < heightTo0x0Coord+gameboardLength){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public void testDraw(){
@@ -336,7 +342,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                 int[] boardCoords = translateScreenCoordsToBoardCoords(coords);
                 if(pente.is1PlayerMode) {
                     runHumanTurn(boardCoords);
-                    runAITurn();
+                    if(pente.isGameInProgress == true) {
+                        runAITurn();
+                    }
                 }
                 if(pente.is2PlayerMode){
                     if(pente.isPlayer1Turn) {
@@ -346,6 +354,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                         runHuman2Turn(boardCoords);
                     }
                 }
+            }
+            else{
+                runAITurn();
             }
             cutoffTimeForTouchEvents = SystemClock.uptimeMillis();
             //Log.i("Up Time",String.valueOf(SystemClock.uptimeMillis()));
@@ -380,6 +391,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+        Log.i("Surface","Destroyed");
         //TODO
     }
 }
