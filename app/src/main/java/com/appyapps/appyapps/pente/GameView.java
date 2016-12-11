@@ -39,8 +39,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public float player2IconOriginHeight;
 
 
-    public Pente pente = PlayingGame.returnPente();
-    public PenteComputerPlayer computerPlayer = new PenteComputerPlayer();
+    public Pente pente = new Pente();
+    public PenteComputerPlayer computerPlayer;
     public int[] userMove = new int[2];
     public boolean isMoveLegal;
     public boolean isMoveLegal2;
@@ -356,6 +356,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                 }
             }
             else{
+                computerPlayer.setDifficulty(3);
                 runAITurn();
             }
             cutoffTimeForTouchEvents = SystemClock.uptimeMillis();
@@ -374,6 +375,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceCreated(SurfaceHolder surfaceholder) {
         canvas = null;
+        pente = PlayingGame.returnPente();
+        computerPlayer = new PenteComputerPlayer();
         computerPlayer.setDifficulty(pente.player2Type);
         surfaceHolder = surfaceholder;
         getDrawableDimensions(canvas, surfaceHolder);

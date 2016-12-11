@@ -3514,7 +3514,7 @@ public class Pente implements Cloneable, Serializable {
      * @return void
      */
     public void calculateCurrentMatchScore(){
-        if (!is5InARowRules && !isNoCapturesRules && !isSingleMatch){
+        if (!is5InARowRules && !isNoCapturesRules){
             tallyFours();
             tallyCaptures();
         }

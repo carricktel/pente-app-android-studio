@@ -432,7 +432,7 @@ public class PenteComputerPlayer {
                     config1.whitePriority = config1.whitePriority - 2; // 5
                     config1.blackEval = -config1.blackEval*5; // eval = 10
                     config1.whiteEval = -config1.whiteEval*5; // eval = -10
-                    System.out.println("blacksCapturedStones: " + Integer.toString(scenario.blacksCapturedStones));
+                    //System.out.println("blacksCapturedStones: " + Integer.toString(scenario.blacksCapturedStones));
                     if ((scenario.blacksCapturedStones == 8 && (scenario.isFreestyleRules || scenario.isStandardRules)) || (scenario.blacksCapturedStones == 13 && scenario.isKeryoRules)){
                         config1.blackPriority = config1.blackPriority - 4; // 1
                         System.out.println("blackPriority: " + Integer.toString(config1.blackPriority));
