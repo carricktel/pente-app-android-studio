@@ -425,20 +425,61 @@ public class PenteComputerPlayer {
                 config1.whitePriority = highPriority; // 7
                 config1.blackPriority = lowPriority;  // 8
                 config1.originCoord = coord;
-                config1.whiteEval = whiteEval; // eval = 2
-                config1.blackEval = blackEval; // eval =-2
-                if (isCoordInArrayList(upper2,scenario.blackMoves) || isCoordInArrayList(lower,scenario.blackMoves)){
+                if (Depth == 3 || Depth == 5){
+                    config1.whiteEval = 2; // -WW- on blacks turn, for white
+                    config1.blackEval = -5; // -WW- on whites turn, for black
+                }
+                if (Depth == 4) {
+                    config1.whiteEval = 5; // -WW- on whites turn, for white
+                    config1.blackEval = -2; // -WW- on blacks turn, for black
+                }
+                if ((isCoordInArrayList(upper2,scenario.blackMoves) && (!isCoordInArrayList(lower,scenario.blackMoves))) || (!isCoordInArrayList(upper2,scenario.blackMoves) && isCoordInArrayList(lower,scenario.blackMoves))){
                     config1.blackPriority = config1.blackPriority - 3; // 5
                     config1.whitePriority = config1.whitePriority - 2; // 5
-                    config1.blackEval = -config1.blackEval*5; // eval = 10
-                    config1.whiteEval = -config1.whiteEval*5; // eval = -10
+                    if (Depth == 3 || Depth == 5){
+                        if (!scenario.isKeryoRules) {
+                            config1.whiteEval = -10; // -WWB- on blacks turn, for white
+                            config1.blackEval = 2; // -WWB- on whites turn, for black
+                        }
+                        if (scenario.isKeryoRules) {
+                            config1.whiteEval = -10; // -WWB- on blacks turn, for white
+                            config1.blackEval = 10; // -WWB- on whites turn, for black
+                        }
+                    }
+                    if (Depth == 4) {
+                        if (!scenario.isKeryoRules) {
+                            config1.whiteEval = -2; // -WWB- on whites turn, for white
+                            config1.blackEval = 10; // -WWB- on blacks turn, for black
+                        }
+                        if (scenario.isKeryoRules){
+                            config1.whiteEval = -10; // -WWB- on whites turn, for white
+                            config1.blackEval = 10; // -WWB- on blacks turn, for black
+                        }
+                    }
                     //System.out.println("blacksCapturedStones: " + Integer.toString(scenario.blacksCapturedStones));
                     if ((scenario.blacksCapturedStones == 8 && (scenario.isFreestyleRules || scenario.isStandardRules)) || (scenario.blacksCapturedStones == 13 && scenario.isKeryoRules)){
                         config1.blackPriority = config1.blackPriority - 4; // 1
-                        System.out.println("blackPriority: " + Integer.toString(config1.blackPriority));
                         config1.whitePriority = config1.whitePriority - 3; // 2
-                        config1.blackEval = config1.blackEval*2; // eval = 20
-                        config1.whiteEval = config1.whiteEval*2; // eval = -20
+                        if (Depth == 3 || Depth == 5){
+                            if (!scenario.isKeryoRules) {
+                                config1.whiteEval = -20; // -WWB- on blacks turn, for white, on game ending capture
+                                config1.blackEval = 5; // -WWB- on whites turn, for black, on game ending capture
+                            }
+                            if (scenario.isKeryoRules) {
+                                config1.whiteEval = -20; // -WWB- on blacks turn, for white, on game ending capture
+                                config1.blackEval = 20; // -WWB- on whites turn, for black, on game ending capture
+                            }
+                        }
+                        if (Depth == 4) {
+                            if (!scenario.isKeryoRules) {
+                                config1.whiteEval = -2; // -WWB- on whites turn, for white, on game ending capture
+                                config1.blackEval = 20; // -WWB- on blacks turn, for black, on game ending capture
+                            }
+                            if (scenario.isKeryoRules) {
+                                config1.whiteEval = -20; // -WWB- on whites turn, for white, on game ending capture
+                                config1.blackEval = 20; // -WWB- on blacks turn, for black, on game ending capture
+                            }
+                        }
                     }
                 }
                 config1.whiteCounterMoves.add(upper2);
@@ -467,18 +508,61 @@ public class PenteComputerPlayer {
                 config2.whitePriority = highPriority;
                 config2.blackPriority = lowPriority;
                 config2.originCoord = coord;
-                config2.whiteEval = whiteEval;
-                config2.blackEval = blackEval;
-                if (isCoordInArrayList(upperRight2,scenario.blackMoves) || isCoordInArrayList(lowerLeft,scenario.blackMoves)){
+                if (Depth == 3 || Depth == 5){
+                    config2.whiteEval = 2; // -WW- on blacks turn, for white
+                    config2.blackEval = -5; // -WW- on whites turn, for black
+                }
+                if (Depth == 4) {
+                    config2.whiteEval = 5; // -WW- on whites turn, for white
+                    config2.blackEval = -2; // -WW- on blacks turn, for black
+                }
+                if ((isCoordInArrayList(upperRight2,scenario.blackMoves) && (!isCoordInArrayList(lowerLeft,scenario.blackMoves))) || (!isCoordInArrayList(upperRight2,scenario.blackMoves) && isCoordInArrayList(lowerLeft,scenario.blackMoves))){
                     config2.blackPriority = config2.blackPriority - 3; // 5
                     config2.whitePriority = config2.whitePriority - 2; // 5
-                    config2.blackEval = -config2.blackEval*5; // eval = 10
-                    config2.whiteEval = -config2.whiteEval*5; // eval = -10
+                    if (Depth == 3 || Depth == 5){
+                        if (!scenario.isKeryoRules) {
+                            config2.whiteEval = -10; // -WWB- on blacks turn, for white
+                            config2.blackEval = 2; // -WWB- on whites turn, for black
+                        }
+                        if (scenario.isKeryoRules) {
+                            config2.whiteEval = -10; // -WWB- on blacks turn, for white
+                            config2.blackEval = 10; // -WWB- on whites turn, for black
+                        }
+                    }
+                    if (Depth == 4) {
+                        if (!scenario.isKeryoRules) {
+                            config2.whiteEval = -2; // -WWB- on whites turn, for white
+                            config2.blackEval = 10; // -WWB- on blacks turn, for black
+                        }
+                        if (scenario.isKeryoRules){
+                            config2.whiteEval = -10; // -WWB- on whites turn, for white
+                            config2.blackEval = 10; // -WWB- on blacks turn, for black
+                        }
+                    }
+                    //System.out.println("blacksCapturedStones: " + Integer.toString(scenario.blacksCapturedStones));
                     if ((scenario.blacksCapturedStones == 8 && (scenario.isFreestyleRules || scenario.isStandardRules)) || (scenario.blacksCapturedStones == 13 && scenario.isKeryoRules)){
                         config2.blackPriority = config2.blackPriority - 4; // 1
                         config2.whitePriority = config2.whitePriority - 3; // 2
-                        config2.blackEval = config2.blackEval*2; // eval = 20
-                        config2.whiteEval = config2.whiteEval*2; // eval = -20
+                        if (Depth == 3 || Depth == 5){
+                            if (!scenario.isKeryoRules) {
+                                config2.whiteEval = -20; // -WWB- on blacks turn, for white, on game ending capture
+                                config2.blackEval = 5; // -WWB- on whites turn, for black, on game ending capture
+                            }
+                            if (scenario.isKeryoRules) {
+                                config2.whiteEval = -20; // -WWB- on blacks turn, for white, on game ending capture
+                                config2.blackEval = 20; // -WWB- on whites turn, for black, on game ending capture
+                            }
+                        }
+                        if (Depth == 4) {
+                            if (!scenario.isKeryoRules) {
+                                config2.whiteEval = -2; // -WWB- on whites turn, for white, on game ending capture
+                                config2.blackEval = 20; // -WWB- on blacks turn, for black, on game ending capture
+                            }
+                            if (scenario.isKeryoRules) {
+                                config2.whiteEval = -20; // -WWB- on whites turn, for white, on game ending capture
+                                config2.blackEval = 20; // -WWB- on blacks turn, for black, on game ending capture
+                            }
+                        }
                     }
                 }
                 config2.whiteCounterMoves.add(upperRight2);
@@ -508,18 +592,61 @@ public class PenteComputerPlayer {
                 config3.whitePriority = highPriority;
                 config3.blackPriority = lowPriority;
                 config3.originCoord = coord;
-                config3.whiteEval = whiteEval;
-                config3.blackEval = blackEval;
-                if (isCoordInArrayList(right2,scenario.blackMoves) || isCoordInArrayList(left,scenario.blackMoves)){
+                if (Depth == 3 || Depth == 5){
+                    config3.whiteEval = 2; // -WW- on blacks turn, for white
+                    config3.blackEval = -5; // -WW- on whites turn, for black
+                }
+                if (Depth == 4) {
+                    config3.whiteEval = 5; // -WW- on whites turn, for white
+                    config3.blackEval = -2; // -WW- on blacks turn, for black
+                }
+                if ((isCoordInArrayList(right2,scenario.blackMoves) && (!isCoordInArrayList(left,scenario.blackMoves))) || (!isCoordInArrayList(right2,scenario.blackMoves) && isCoordInArrayList(left,scenario.blackMoves))){
                     config3.blackPriority = config3.blackPriority - 3; // 5
                     config3.whitePriority = config3.whitePriority - 2; // 5
-                    config3.blackEval = -config3.blackEval*5; // eval = 10
-                    config3.whiteEval = -config3.whiteEval*5; // eval = -10
+                    if (Depth == 3 || Depth == 5){
+                        if (!scenario.isKeryoRules) {
+                            config3.whiteEval = -10; // -WWB- on blacks turn, for white
+                            config3.blackEval = 2; // -WWB- on whites turn, for black
+                        }
+                        if (scenario.isKeryoRules) {
+                            config3.whiteEval = -10; // -WWB- on blacks turn, for white
+                            config3.blackEval = 10; // -WWB- on whites turn, for black
+                        }
+                    }
+                    if (Depth == 4) {
+                        if (!scenario.isKeryoRules) {
+                            config3.whiteEval = -2; // -WWB- on whites turn, for white
+                            config3.blackEval = 10; // -WWB- on blacks turn, for black
+                        }
+                        if (scenario.isKeryoRules){
+                            config3.whiteEval = -10; // -WWB- on whites turn, for white
+                            config3.blackEval = 10; // -WWB- on blacks turn, for black
+                        }
+                    }
+                    //System.out.println("blacksCapturedStones: " + Integer.toString(scenario.blacksCapturedStones));
                     if ((scenario.blacksCapturedStones == 8 && (scenario.isFreestyleRules || scenario.isStandardRules)) || (scenario.blacksCapturedStones == 13 && scenario.isKeryoRules)){
                         config3.blackPriority = config3.blackPriority - 4; // 1
                         config3.whitePriority = config3.whitePriority - 3; // 2
-                        config3.blackEval = config3.blackEval*2; // eval = 20
-                        config3.whiteEval = config3.whiteEval*2; // eval = -20
+                        if (Depth == 3 || Depth == 5){
+                            if (!scenario.isKeryoRules) {
+                                config3.whiteEval = -20; // -WWB- on blacks turn, for white, on game ending capture
+                                config3.blackEval = 5; // -WWB- on whites turn, for black, on game ending capture
+                            }
+                            if (scenario.isKeryoRules) {
+                                config3.whiteEval = -20; // -WWB- on blacks turn, for white, on game ending capture
+                                config3.blackEval = 20; // -WWB- on whites turn, for black, on game ending capture
+                            }
+                        }
+                        if (Depth == 4) {
+                            if (!scenario.isKeryoRules) {
+                                config3.whiteEval = -2; // -WWB- on whites turn, for white, on game ending capture
+                                config3.blackEval = 20; // -WWB- on blacks turn, for black, on game ending capture
+                            }
+                            if (scenario.isKeryoRules) {
+                                config3.whiteEval = -20; // -WWB- on whites turn, for white, on game ending capture
+                                config3.blackEval = 20; // -WWB- on blacks turn, for black, on game ending capture
+                            }
+                        }
                     }
                 }
                 config3.whiteCounterMoves.add(right2);
@@ -548,18 +675,61 @@ public class PenteComputerPlayer {
                 config4.whitePriority = highPriority;
                 config4.blackPriority = lowPriority;
                 config4.originCoord = coord;
-                config4.whiteEval = whiteEval;
-                config4.blackEval = blackEval;
-                if (isCoordInArrayList(lowerRight2,scenario.blackMoves) || isCoordInArrayList(upperLeft,scenario.blackMoves)){
+                if (Depth == 3 || Depth == 5){
+                    config4.whiteEval = 2; // -WW- on blacks turn, for white
+                    config4.blackEval = -5; // -WW- on whites turn, for black
+                }
+                if (Depth == 4) {
+                    config4.whiteEval = 5; // -WW- on whites turn, for white
+                    config4.blackEval = -2; // -WW- on blacks turn, for black
+                }
+                if ((isCoordInArrayList(lowerRight2,scenario.blackMoves) && (!isCoordInArrayList(upperLeft,scenario.blackMoves))) || (!isCoordInArrayList(lowerRight2,scenario.blackMoves) && isCoordInArrayList(upperLeft,scenario.blackMoves))){
                     config4.blackPriority = config4.blackPriority - 3; // 5
                     config4.whitePriority = config4.whitePriority - 2; // 5
-                    config4.blackEval = -config4.blackEval*5; // eval = 10
-                    config4.whiteEval = -config4.whiteEval*5; // eval = -10
+                    if (Depth == 3 || Depth == 5){
+                        if (!scenario.isKeryoRules) {
+                            config4.whiteEval = -10; // -WWB- on blacks turn, for white
+                            config4.blackEval = 2; // -WWB- on whites turn, for black
+                        }
+                        if (scenario.isKeryoRules) {
+                            config4.whiteEval = -10; // -WWB- on blacks turn, for white
+                            config4.blackEval = 10; // -WWB- on whites turn, for black
+                        }
+                    }
+                    if (Depth == 4) {
+                        if (!scenario.isKeryoRules) {
+                            config4.whiteEval = -2; // -WWB- on whites turn, for white
+                            config4.blackEval = 10; // -WWB- on blacks turn, for black
+                        }
+                        if (scenario.isKeryoRules){
+                            config4.whiteEval = -10; // -WWB- on whites turn, for white
+                            config4.blackEval = 10; // -WWB- on blacks turn, for black
+                        }
+                    }
+                    //System.out.println("blacksCapturedStones: " + Integer.toString(scenario.blacksCapturedStones));
                     if ((scenario.blacksCapturedStones == 8 && (scenario.isFreestyleRules || scenario.isStandardRules)) || (scenario.blacksCapturedStones == 13 && scenario.isKeryoRules)){
                         config4.blackPriority = config4.blackPriority - 4; // 1
                         config4.whitePriority = config4.whitePriority - 3; // 2
-                        config4.blackEval = config4.blackEval*2; // eval = 20
-                        config4.whiteEval = config4.whiteEval*2; // eval = -20
+                        if (Depth == 3 || Depth == 5){
+                            if (!scenario.isKeryoRules) {
+                                config4.whiteEval = -20; // -WWB- on blacks turn, for white, on game ending capture
+                                config4.blackEval = 5; // -WWB- on whites turn, for black, on game ending capture
+                            }
+                            if (scenario.isKeryoRules) {
+                                config4.whiteEval = -20; // -WWB- on blacks turn, for white, on game ending capture
+                                config4.blackEval = 20; // -WWB- on whites turn, for black, on game ending capture
+                            }
+                        }
+                        if (Depth == 4) {
+                            if (!scenario.isKeryoRules) {
+                                config4.whiteEval = -2; // -WWB- on whites turn, for white, on game ending capture
+                                config4.blackEval = 20; // -WWB- on blacks turn, for black, on game ending capture
+                            }
+                            if (scenario.isKeryoRules) {
+                                config4.whiteEval = -20; // -WWB- on whites turn, for white, on game ending capture
+                                config4.blackEval = 20; // -WWB- on blacks turn, for black, on game ending capture
+                            }
+                        }
                     }
                 }
                 config4.whiteCounterMoves.add(lowerRight2);
@@ -590,18 +760,61 @@ public class PenteComputerPlayer {
                 config5.blackPriority = highPriority;
                 config5.whitePriority = lowPriority;
                 config5.originCoord = coord;
-                config5.blackEval = -blackEval;
-                config5.whiteEval = -whiteEval;
-                if (isCoordInArrayList(upper2,scenario.whiteMoves) || isCoordInArrayList(lower,scenario.whiteMoves)){
-                    config5.blackPriority = config5.blackPriority - 2; // 5
+                if (Depth == 3 || Depth == 5){
+                    config5.blackEval = 2; // -BB- on whites turn, for black
+                    config5.whiteEval = -5; // -BB- on blacks turn, for white
+                }
+                if (Depth == 4) {
+                    config5.blackEval = 5; // -BB- on blacks turn, for black
+                    config5.whiteEval = -2; // -BB- on whites turn, for white
+                }
+                if ((isCoordInArrayList(upper2,scenario.whiteMoves) && (!isCoordInArrayList(lower,scenario.whiteMoves))) || (!isCoordInArrayList(upper2,scenario.whiteMoves) && isCoordInArrayList(lower,scenario.whiteMoves))){
                     config5.whitePriority = config5.whitePriority - 3; // 5
-                    config5.blackEval = -config5.blackEval*5; // eval = -10
-                    config5.whiteEval = -config5.whiteEval*5; // eval = 10
+                    config5.blackPriority = config5.blackPriority - 2; // 5
+                    if (Depth == 3 || Depth == 5){
+                        if (!scenario.isKeryoRules) {
+                            config5.blackEval = -10; // -BBW- on whites turn, for black
+                            config5.whiteEval = 2; // -BBW- on blacks turn, for white
+                        }
+                        if (scenario.isKeryoRules) {
+                            config5.blackEval = -10; // -BBW- on whites turn, for black
+                            config5.whiteEval = 10; // -BBW- on blacks turn, for white
+                        }
+                    }
+                    if (Depth == 4) {
+                        if (!scenario.isKeryoRules) {
+                            config5.blackEval = -2; // -BBW- on blacks turn, for black
+                            config5.whiteEval = 10; // -BBW- on whites turn, for white
+                        }
+                        if (scenario.isKeryoRules){
+                            config5.blackEval = -10; // -BBW- on blacks turn, for black
+                            config5.whiteEval = 10; // -BBW- on whites turn, for white
+                        }
+                    }
+                    //System.out.println("whitesCapturedStones: " + Integer.toString(scenario.whitesCapturedStones));
                     if ((scenario.whitesCapturedStones == 8 && (scenario.isFreestyleRules || scenario.isStandardRules)) || (scenario.whitesCapturedStones == 13 && scenario.isKeryoRules)){
-                        config5.blackPriority = config5.blackPriority - 3; // 2
                         config5.whitePriority = config5.whitePriority - 4; // 1
-                        config5.blackEval = config5.blackEval*2; // eval = -20
-                        config5.whiteEval = config5.whiteEval*2; // eval = 20
+                        config5.blackPriority = config5.blackPriority - 3; // 2
+                        if (Depth == 3 || Depth == 5){
+                            if (!scenario.isKeryoRules) {
+                                config5.blackEval = -20; // -BBW- on whites turn, for black, on game ending capture
+                                config5.whiteEval = 5; // -BBW- on blacks turn, for white, on game ending capture
+                            }
+                            if (scenario.isKeryoRules) {
+                                config5.blackEval = -20; // -BBW- on whites turn, for black, on game ending capture
+                                config5.whiteEval = 20; // -BBW- on blacks turn, for white, on game ending capture
+                            }
+                        }
+                        if (Depth == 4) {
+                            if (!scenario.isKeryoRules) {
+                                config5.blackEval = -2; // -BBW- on blacks turn, for black, on game ending capture
+                                config5.whiteEval = 20; // -BBW- on whites turn, for white, on game ending capture
+                            }
+                            if (scenario.isKeryoRules) {
+                                config5.blackEval = -20; // -BBW- on blacks turn, for black, on game ending capture
+                                config5.whiteEval = 20; // -BBW- on whites turn, for white, on game ending capture
+                            }
+                        }
                     }
                 }
                 config5.blackCounterMoves.add(upper2);
@@ -630,18 +843,61 @@ public class PenteComputerPlayer {
                 config6.blackPriority = highPriority;
                 config6.whitePriority = lowPriority;
                 config6.originCoord = coord;
-                config6.blackEval = -blackEval;
-                config6.whiteEval = -whiteEval;
-                if (isCoordInArrayList(upperRight2,scenario.whiteMoves) || isCoordInArrayList(lowerLeft,scenario.whiteMoves)){
-                    config6.blackPriority = config6.blackPriority - 2; // 5
+                if (Depth == 3 || Depth == 5){
+                    config6.blackEval = 2; // -BB- on whites turn, for black
+                    config6.whiteEval = -5; // -BB- on blacks turn, for white
+                }
+                if (Depth == 4) {
+                    config6.blackEval = 5; // -BB- on blacks turn, for black
+                    config6.whiteEval = -2; // -BB- on whites turn, for white
+                }
+                if ((isCoordInArrayList(upperRight2,scenario.whiteMoves) && (!isCoordInArrayList(lowerLeft,scenario.whiteMoves))) || (!isCoordInArrayList(upperRight2,scenario.whiteMoves) && isCoordInArrayList(lowerLeft,scenario.whiteMoves))){
                     config6.whitePriority = config6.whitePriority - 3; // 5
-                    config6.blackEval = -config6.blackEval*5; // eval = -10
-                    config6.whiteEval = -config6.whiteEval*5; // eval = 10
+                    config6.blackPriority = config6.blackPriority - 2; // 5
+                    if (Depth == 3 || Depth == 5){
+                        if (!scenario.isKeryoRules) {
+                            config6.blackEval = -10; // -BBW- on whites turn, for black
+                            config6.whiteEval = 2; // -BBW- on blacks turn, for white
+                        }
+                        if (scenario.isKeryoRules) {
+                            config6.blackEval = -10; // -BBW- on whites turn, for black
+                            config6.whiteEval = 10; // -BBW- on blacks turn, for white
+                        }
+                    }
+                    if (Depth == 4) {
+                        if (!scenario.isKeryoRules) {
+                            config6.blackEval = -2; // -BBW- on blacks turn, for black
+                            config6.whiteEval = 10; // -BBW- on whites turn, for white
+                        }
+                        if (scenario.isKeryoRules){
+                            config6.blackEval = -10; // -BBW- on blacks turn, for black
+                            config6.whiteEval = 10; // -BBW- on whites turn, for white
+                        }
+                    }
+                    //System.out.println("whitesCapturedStones: " + Integer.toString(scenario.whitesCapturedStones));
                     if ((scenario.whitesCapturedStones == 8 && (scenario.isFreestyleRules || scenario.isStandardRules)) || (scenario.whitesCapturedStones == 13 && scenario.isKeryoRules)){
-                        config6.blackPriority = config6.blackPriority - 3; // 2
                         config6.whitePriority = config6.whitePriority - 4; // 1
-                        config6.blackEval = config6.blackEval*2; // eval = -20
-                        config6.whiteEval = config6.whiteEval*2; // eval = 20
+                        config6.blackPriority = config6.blackPriority - 3; // 2
+                        if (Depth == 3 || Depth == 5){
+                            if (!scenario.isKeryoRules) {
+                                config6.blackEval = -20; // -BBW- on whites turn, for black, on game ending capture
+                                config6.whiteEval = 5; // -BBW- on blacks turn, for white, on game ending capture
+                            }
+                            if (scenario.isKeryoRules) {
+                                config6.blackEval = -20; // -BBW- on whites turn, for black, on game ending capture
+                                config6.whiteEval = 20; // -BBW- on blacks turn, for white, on game ending capture
+                            }
+                        }
+                        if (Depth == 4) {
+                            if (!scenario.isKeryoRules) {
+                                config6.blackEval = -2; // -BBW- on blacks turn, for black, on game ending capture
+                                config6.whiteEval = 20; // -BBW- on whites turn, for white, on game ending capture
+                            }
+                            if (scenario.isKeryoRules) {
+                                config6.blackEval = -20; // -BBW- on blacks turn, for black, on game ending capture
+                                config6.whiteEval = 20; // -BBW- on whites turn, for white, on game ending capture
+                            }
+                        }
                     }
                 }
                 config6.blackCounterMoves.add(upperRight2);
@@ -671,18 +927,62 @@ public class PenteComputerPlayer {
                 config7.blackPriority = highPriority;
                 config7.whitePriority = lowPriority;
                 config7.originCoord = coord;
-                config7.blackEval = -blackEval;
-                config7.whiteEval = -whiteEval;
-                if (isCoordInArrayList(right2,scenario.whiteMoves) || isCoordInArrayList(left,scenario.whiteMoves)){
-                    config7.blackPriority = config7.blackPriority - 2; // 5
+
+                if (Depth == 3 || Depth == 5){
+                    config7.blackEval = 2; // -BB- on whites turn, for black
+                    config7.whiteEval = -5; // -BB- on blacks turn, for white
+                }
+                if (Depth == 4) {
+                    config7.blackEval = 5; // -BB- on blacks turn, for black
+                    config7.whiteEval = -2; // -BB- on whites turn, for white
+                }
+                if ((isCoordInArrayList(right2,scenario.whiteMoves) && (!isCoordInArrayList(left,scenario.whiteMoves))) || (!isCoordInArrayList(right2,scenario.whiteMoves) && isCoordInArrayList(left,scenario.whiteMoves))){
                     config7.whitePriority = config7.whitePriority - 3; // 5
-                    config7.blackEval = -config7.blackEval*5; // eval = -10
-                    config7.whiteEval = -config7.whiteEval*5; // eval = 10
+                    config7.blackPriority = config7.blackPriority - 2; // 5
+                    if (Depth == 3 || Depth == 5){
+                        if (!scenario.isKeryoRules) {
+                            config7.blackEval = -10; // -BBW- on whites turn, for black
+                            config7.whiteEval = 2; // -BBW- on blacks turn, for white
+                        }
+                        if (scenario.isKeryoRules) {
+                            config7.blackEval = -10; // -BBW- on whites turn, for black
+                            config7.whiteEval = 10; // -BBW- on blacks turn, for white
+                        }
+                    }
+                    if (Depth == 4) {
+                        if (!scenario.isKeryoRules) {
+                            config7.blackEval = -2; // -BBW- on blacks turn, for black
+                            config7.whiteEval = 10; // -BBW- on whites turn, for white
+                        }
+                        if (scenario.isKeryoRules){
+                            config7.blackEval = -10; // -BBW- on blacks turn, for black
+                            config7.whiteEval = 10; // -BBW- on whites turn, for white
+                        }
+                    }
+                    //System.out.println("whitesCapturedStones: " + Integer.toString(scenario.whitesCapturedStones));
                     if ((scenario.whitesCapturedStones == 8 && (scenario.isFreestyleRules || scenario.isStandardRules)) || (scenario.whitesCapturedStones == 13 && scenario.isKeryoRules)){
-                        config7.blackPriority = config7.blackPriority - 3; // 2
                         config7.whitePriority = config7.whitePriority - 4; // 1
-                        config7.blackEval = config7.blackEval*2; // eval = -20
-                        config7.whiteEval = config7.whiteEval*2; // eval = 20
+                        config7.blackPriority = config7.blackPriority - 3; // 2
+                        if (Depth == 3 || Depth == 5){
+                            if (!scenario.isKeryoRules) {
+                                config7.blackEval = -20; // -BBW- on whites turn, for black, on game ending capture
+                                config7.whiteEval = 5; // -BBW- on blacks turn, for white, on game ending capture
+                            }
+                            if (scenario.isKeryoRules) {
+                                config7.blackEval = -20; // -BBW- on whites turn, for black, on game ending capture
+                                config7.whiteEval = 20; // -BBW- on blacks turn, for white, on game ending capture
+                            }
+                        }
+                        if (Depth == 4) {
+                            if (!scenario.isKeryoRules) {
+                                config7.blackEval = -2; // -BBW- on blacks turn, for black, on game ending capture
+                                config7.whiteEval = 20; // -BBW- on whites turn, for white, on game ending capture
+                            }
+                            if (scenario.isKeryoRules) {
+                                config7.blackEval = -20; // -BBW- on blacks turn, for black, on game ending capture
+                                config7.whiteEval = 20; // -BBW- on whites turn, for white, on game ending capture
+                            }
+                        }
                     }
                 }
                 config7.blackCounterMoves.add(right2);
@@ -711,18 +1011,61 @@ public class PenteComputerPlayer {
                 config8.blackPriority = highPriority;
                 config8.whitePriority = lowPriority;
                 config8.originCoord = coord;
-                config8.blackEval = -blackEval;
-                config8.whiteEval = -whiteEval;
-                if (isCoordInArrayList(lowerRight2,scenario.whiteMoves) || isCoordInArrayList(upperLeft,scenario.whiteMoves)){
-                    config8.blackPriority = config8.blackPriority - 2; // 5
+                if (Depth == 3 || Depth == 5){
+                    config8.blackEval = 2; // -BB- on whites turn, for black
+                    config8.whiteEval = -5; // -BB- on blacks turn, for white
+                }
+                if (Depth == 4) {
+                    config8.blackEval = 5; // -BB- on blacks turn, for black
+                    config8.whiteEval = -2; // -BB- on whites turn, for white
+                }
+                if ((isCoordInArrayList(lowerRight2,scenario.whiteMoves) && (!isCoordInArrayList(upperLeft,scenario.whiteMoves))) || (!isCoordInArrayList(lowerRight2,scenario.whiteMoves) && isCoordInArrayList(upperLeft,scenario.whiteMoves))){
                     config8.whitePriority = config8.whitePriority - 3; // 5
-                    config8.blackEval = -config8.blackEval*5; // eval = -10
-                    config8.whiteEval = -config8.whiteEval*5; // eval = 10
+                    config8.blackPriority = config8.blackPriority - 2; // 5
+                    if (Depth == 3 || Depth == 5){
+                        if (!scenario.isKeryoRules) {
+                            config8.blackEval = -10; // -BBW- on whites turn, for black
+                            config8.whiteEval = 2; // -BBW- on blacks turn, for white
+                        }
+                        if (scenario.isKeryoRules) {
+                            config8.blackEval = -10; // -BBW- on whites turn, for black
+                            config8.whiteEval = 10; // -BBW- on blacks turn, for white
+                        }
+                    }
+                    if (Depth == 4) {
+                        if (!scenario.isKeryoRules) {
+                            config8.blackEval = -2; // -BBW- on blacks turn, for black
+                            config8.whiteEval = 10; // -BBW- on whites turn, for white
+                        }
+                        if (scenario.isKeryoRules){
+                            config8.blackEval = -10; // -BBW- on blacks turn, for black
+                            config8.whiteEval = 10; // -BBW- on whites turn, for white
+                        }
+                    }
+                    //System.out.println("whitesCapturedStones: " + Integer.toString(scenario.whitesCapturedStones));
                     if ((scenario.whitesCapturedStones == 8 && (scenario.isFreestyleRules || scenario.isStandardRules)) || (scenario.whitesCapturedStones == 13 && scenario.isKeryoRules)){
-                        config8.blackPriority = config8.blackPriority - 3; // 2
                         config8.whitePriority = config8.whitePriority - 4; // 1
-                        config8.blackEval = config8.blackEval*2; // eval = -20
-                        config8.whiteEval = config8.whiteEval*2; // eval = 20
+                        config8.blackPriority = config8.blackPriority - 3; // 2
+                        if (Depth == 3 || Depth == 5){
+                            if (!scenario.isKeryoRules) {
+                                config8.blackEval = -20; // -BBW- on whites turn, for black, on game ending capture
+                                config8.whiteEval = 5; // -BBW- on blacks turn, for white, on game ending capture
+                            }
+                            if (scenario.isKeryoRules) {
+                                config8.blackEval = -20; // -BBW- on whites turn, for black, on game ending capture
+                                config8.whiteEval = 20; // -BBW- on blacks turn, for white, on game ending capture
+                            }
+                        }
+                        if (Depth == 4) {
+                            if (!scenario.isKeryoRules) {
+                                config8.blackEval = -2; // -BBW- on blacks turn, for black, on game ending capture
+                                config8.whiteEval = 20; // -BBW- on whites turn, for white, on game ending capture
+                            }
+                            if (scenario.isKeryoRules) {
+                                config8.blackEval = -20; // -BBW- on blacks turn, for black, on game ending capture
+                                config8.whiteEval = 20; // -BBW- on whites turn, for white, on game ending capture
+                            }
+                        }
                     }
                 }
                 config8.blackCounterMoves.add(lowerRight2);
@@ -792,17 +1135,46 @@ public class PenteComputerPlayer {
                 config1.confType = 1;
                 config1.direction = 90;
                 config1.isWhite = true;
-                config1.whitePriority = highPriority;
-                config1.blackPriority = lowPriority;
                 config1.originCoord = coord;
-                config1.whiteEval = whiteEval;
-                config1.blackEval = blackEval;
                 if (!isCoordInArrayList(upper3,scenario.blackMoves) && !isCoordInArrayList(lower,scenario.blackMoves)){
-                    config1.whitePriority = config1.whitePriority - 2;
-                    config1.blackPriority = config1.blackPriority - 2;
-                    config1.whiteEval = whiteEval*2;
-                    config1.blackEval = blackEval*2;
+                    config1.whitePriority = 3;
+                    config1.blackPriority = 4;
+                    if (Depth == 3 || Depth == 5){
+                        config1.blackEval = -20; // -WWW- on whites turn, for black
+                        config1.whiteEval = 10; // -WWW- on blacks turn, for white
+                    }
+                    if (Depth == 4) {
+                        config1.blackEval = -10; // -WWW- on blacks turn, for black
+                        config1.whiteEval = 20; // -WWW- on whites turn, for white
+                    }
                 }
+                if ((isCoordInArrayList(upper3,scenario.blackMoves) && !isCoordInArrayList(lower,scenario.blackMoves)) || (!isCoordInArrayList(upper3,scenario.blackMoves) && isCoordInArrayList(lower,scenario.blackMoves))){
+                    if(scenario.isKeryoRules) {
+                        config1.whitePriority = 4;
+                        config1.blackPriority = 3;
+                        if (Depth == 3 || Depth == 5) {
+                            config1.blackEval = -10; // -BWWW- on whites turn, for black
+                            config1.whiteEval = -10; // -BWWW- on blacks turn, for white
+                        }
+                        if (Depth == 4) {
+                            config1.blackEval = 10; // -BWWW- on blacks turn, for black
+                            config1.whiteEval = 10; // -BWWW- on whites turn, for white
+                        }
+                    }
+                    if(!scenario.isKeryoRules) {
+                        config1.whitePriority = 5;
+                        config1.blackPriority = 6;
+                        if (Depth == 3 || Depth == 5) {
+                            config1.blackEval = -10; // -BWWW- on whites turn, for black
+                            config1.whiteEval = 5; // -BWWW- on blacks turn, for white
+                        }
+                        if (Depth == 4) {
+                            config1.blackEval = -5; // -BWWW- on blacks turn, for black
+                            config1.whiteEval = 10; // -BWWW- on whites turn, for white
+                        }
+                    }
+                }
+
                 config1.whiteCounterMoves.add(upper3);
                 config1.whiteCounterMoves.add(lower);
                 config1.blackCounterMoves.add(upper3);
@@ -830,13 +1202,43 @@ public class PenteComputerPlayer {
                 config2.whitePriority = highPriority;
                 config2.blackPriority = lowPriority;
                 config2.originCoord = coord;
-                config2.whiteEval = whiteEval;
-                config2.blackEval = blackEval;
                 if (!isCoordInArrayList(upperRight3,scenario.blackMoves) && !isCoordInArrayList(lowerLeft,scenario.blackMoves)){
-                    config2.whitePriority = config2.whitePriority - 2;
-                    config2.blackPriority = config2.blackPriority - 2;
-                    config2.whiteEval = whiteEval*2;
-                    config2.blackEval = blackEval*2;
+                    config2.whitePriority = 3;
+                    config2.blackPriority = 4;
+                    if (Depth == 3 || Depth == 5){
+                        config2.blackEval = -20; // -WWW- on whites turn, for black
+                        config2.whiteEval = 10; // -WWW- on blacks turn, for white
+                    }
+                    if (Depth == 4) {
+                        config2.blackEval = -10; // -WWW- on blacks turn, for black
+                        config2.whiteEval = 20; // -WWW- on whites turn, for white
+                    }
+                }
+                if ((isCoordInArrayList(upperRight3,scenario.blackMoves) && !isCoordInArrayList(lowerLeft,scenario.blackMoves)) || (!isCoordInArrayList(upperRight3,scenario.blackMoves) && isCoordInArrayList(lowerLeft,scenario.blackMoves))){
+                    if(scenario.isKeryoRules) {
+                        config2.whitePriority = 4;
+                        config2.blackPriority = 3;
+                        if (Depth == 3 || Depth == 5) {
+                            config2.blackEval = -10; // -BWWW- on whites turn, for black
+                            config2.whiteEval = -10; // -BWWW- on blacks turn, for white
+                        }
+                        if (Depth == 4) {
+                            config2.blackEval = 10; // -BWWW- on blacks turn, for black
+                            config2.whiteEval = 10; // -BWWW- on whites turn, for white
+                        }
+                    }
+                    if(!scenario.isKeryoRules) {
+                        config2.whitePriority = 5;
+                        config2.blackPriority = 6;
+                        if (Depth == 3 || Depth == 5) {
+                            config2.blackEval = -10; // -BWWW- on whites turn, for black
+                            config2.whiteEval = 5; // -BWWW- on blacks turn, for white
+                        }
+                        if (Depth == 4) {
+                            config2.blackEval = -5; // -BWWW- on blacks turn, for black
+                            config2.whiteEval = 10; // -BWWW- on whites turn, for white
+                        }
+                    }
                 }
                 config2.whiteCounterMoves.add(upperRight3);
                 config2.whiteCounterMoves.add(lowerLeft);
@@ -866,13 +1268,43 @@ public class PenteComputerPlayer {
                 config3.whitePriority = highPriority;
                 config3.blackPriority = lowPriority;
                 config3.originCoord = coord;
-                config3.whiteEval = whiteEval;
-                config3.blackEval = blackEval;
                 if (!isCoordInArrayList(right3,scenario.blackMoves) && !isCoordInArrayList(left,scenario.blackMoves)){
-                    config3.whitePriority = config3.whitePriority - 2;
-                    config3.blackPriority = config3.blackPriority - 2;
-                    config3.whiteEval = whiteEval*2;
-                    config3.blackEval = blackEval*2;
+                    config3.whitePriority = 3;
+                    config3.blackPriority = 4;
+                    if (Depth == 3 || Depth == 5){
+                        config3.blackEval = -20; // -WWW- on whites turn, for black
+                        config3.whiteEval = 10; // -WWW- on blacks turn, for white
+                    }
+                    if (Depth == 4) {
+                        config3.blackEval = -10; // -WWW- on blacks turn, for black
+                        config3.whiteEval = 20; // -WWW- on whites turn, for white
+                    }
+                }
+                if ((isCoordInArrayList(right3,scenario.blackMoves) && !isCoordInArrayList(left,scenario.blackMoves)) || (!isCoordInArrayList(right3,scenario.blackMoves) && isCoordInArrayList(left,scenario.blackMoves))){
+                    if(scenario.isKeryoRules) {
+                        config3.whitePriority = 4;
+                        config3.blackPriority = 3;
+                        if (Depth == 3 || Depth == 5) {
+                            config3.blackEval = -10; // -BWWW- on whites turn, for black
+                            config3.whiteEval = -10; // -BWWW- on blacks turn, for white
+                        }
+                        if (Depth == 4) {
+                            config3.blackEval = 10; // -BWWW- on blacks turn, for black
+                            config3.whiteEval = 10; // -BWWW- on whites turn, for white
+                        }
+                    }
+                    if(!scenario.isKeryoRules) {
+                        config3.whitePriority = 5;
+                        config3.blackPriority = 6;
+                        if (Depth == 3 || Depth == 5) {
+                            config3.blackEval = -10; // -BWWW- on whites turn, for black
+                            config3.whiteEval = 5; // -BWWW- on blacks turn, for white
+                        }
+                        if (Depth == 4) {
+                            config3.blackEval = -5; // -BWWW- on blacks turn, for black
+                            config3.whiteEval = 10; // -BWWW- on whites turn, for white
+                        }
+                    }
                 }
                 config3.whiteCounterMoves.add(right3);
                 config3.whiteCounterMoves.add(left);
@@ -901,13 +1333,43 @@ public class PenteComputerPlayer {
                 config4.whitePriority = highPriority;
                 config4.blackPriority = lowPriority;
                 config4.originCoord = coord;
-                config4.whiteEval = whiteEval;
-                config4.blackEval = blackEval;
                 if (!isCoordInArrayList(lowerRight3,scenario.blackMoves) && !isCoordInArrayList(upperLeft,scenario.blackMoves)){
-                    config4.whitePriority = config4.whitePriority - 2;
-                    config4.blackPriority = config4.blackPriority - 2;
-                    config4.whiteEval = whiteEval*2;
-                    config4.blackEval = blackEval*2;
+                    config4.whitePriority = 3;
+                    config4.blackPriority = 4;
+                    if (Depth == 3 || Depth == 5){
+                        config4.blackEval = -20; // -WWW- on whites turn, for black
+                        config4.whiteEval = 10; // -WWW- on blacks turn, for white
+                    }
+                    if (Depth == 4) {
+                        config4.blackEval = -10; // -WWW- on blacks turn, for black
+                        config4.whiteEval = 20; // -WWW- on whites turn, for white
+                    }
+                }
+                if ((isCoordInArrayList(lowerRight3,scenario.blackMoves) && !isCoordInArrayList(upperLeft,scenario.blackMoves)) || (!isCoordInArrayList(lowerRight3,scenario.blackMoves) && isCoordInArrayList(upperLeft,scenario.blackMoves))){
+                    if(scenario.isKeryoRules) {
+                        config4.whitePriority = 4;
+                        config4.blackPriority = 3;
+                        if (Depth == 3 || Depth == 5) {
+                            config4.blackEval = -10; // -BWWW- on whites turn, for black
+                            config4.whiteEval = -10; // -BWWW- on blacks turn, for white
+                        }
+                        if (Depth == 4) {
+                            config4.blackEval = 10; // -BWWW- on blacks turn, for black
+                            config4.whiteEval = 10; // -BWWW- on whites turn, for white
+                        }
+                    }
+                    if(!scenario.isKeryoRules) {
+                        config4.whitePriority = 5;
+                        config4.blackPriority = 6;
+                        if (Depth == 3 || Depth == 5) {
+                            config4.blackEval = -10; // -BWWW- on whites turn, for black
+                            config4.whiteEval = 5; // -BWWW- on blacks turn, for white
+                        }
+                        if (Depth == 4) {
+                            config4.blackEval = -5; // -BWWW- on blacks turn, for black
+                            config4.whiteEval = 10; // -BWWW- on whites turn, for white
+                        }
+                    }
                 }
                 config4.whiteCounterMoves.add(lowerRight3);
                 config4.whiteCounterMoves.add(upperLeft);
@@ -938,13 +1400,43 @@ public class PenteComputerPlayer {
                 config5.blackPriority = highPriority;
                 config5.whitePriority = lowPriority;
                 config5.originCoord = coord;
-                config5.blackEval = -blackEval;
-                config5.whiteEval = -whiteEval;
                 if (!isCoordInArrayList(upper3,scenario.whiteMoves) && !isCoordInArrayList(lower,scenario.whiteMoves)){
-                    config5.whitePriority = config5.whitePriority - 2;
-                    config5.blackPriority = config5.blackPriority - 2;
-                    config5.whiteEval = -whiteEval*2;
-                    config5.blackEval = -blackEval*2;
+                    config5.blackPriority = 3;
+                    config5.whitePriority = 4;
+                    if (Depth == 3 || Depth == 5){
+                        config5.whiteEval = -20; // -BBB- on blacks turn, for white
+                        config5.blackEval = 10; // -BBB- on whites turn, for black
+                    }
+                    if (Depth == 4) {
+                        config5.whiteEval = -10; // -BBB- on whites turn, for white
+                        config5.blackEval = 20; // -BBB- on blacks turn, for black
+                    }
+                }
+                if ((isCoordInArrayList(upper3,scenario.whiteMoves) && !isCoordInArrayList(lower,scenario.whiteMoves)) || (!isCoordInArrayList(upper3,scenario.whiteMoves) && isCoordInArrayList(lower,scenario.whiteMoves))){
+                    if(scenario.isKeryoRules) {
+                        config5.blackPriority = 4;
+                        config5.whitePriority = 3;
+                        if (Depth == 3 || Depth == 5) {
+                            config5.whiteEval = -10; // -WBBB- on blacks turn, for white
+                            config5.blackEval = -10; // -WBBB- on whites turn, for black
+                        }
+                        if (Depth == 4) {
+                            config5.whiteEval = 10; // -WBBB- on whites turn, for white
+                            config5.blackEval = 10; // -WBBB- on blacks turn, for black
+                        }
+                    }
+                    if(!scenario.isKeryoRules) {
+                        config5.blackPriority = 5;
+                        config5.whitePriority = 6;
+                        if (Depth == 3 || Depth == 5) {
+                            config5.whiteEval = -10; // -WBBB- on blacks turn, for white
+                            config5.blackEval = 5; // -WBBB- on whites turn, for black
+                        }
+                        if (Depth == 4) {
+                            config5.whiteEval = -5; // -WBBB- on whites turn, for white
+                            config5.blackEval = 10; // -WBBB- on blacks turn, for black
+                        }
+                    }
                 }
                 config5.blackCounterMoves.add(upper3);
                 config5.blackCounterMoves.add(lower);
@@ -973,13 +1465,43 @@ public class PenteComputerPlayer {
                 config6.blackPriority = highPriority;
                 config6.whitePriority = lowPriority;
                 config6.originCoord = coord;
-                config6.blackEval = -blackEval;
-                config6.whiteEval = -whiteEval;
                 if (!isCoordInArrayList(upperRight3,scenario.whiteMoves) && !isCoordInArrayList(lowerLeft,scenario.whiteMoves)){
-                    config6.whitePriority = config6.whitePriority - 2;
-                    config6.blackPriority = config6.blackPriority - 2;
-                    config6.whiteEval = -whiteEval*2;
-                    config6.blackEval = -blackEval*2;
+                    config6.blackPriority = 3;
+                    config6.whitePriority = 4;
+                    if (Depth == 3 || Depth == 5){
+                        config6.whiteEval = -20; // -BBB- on blacks turn, for white
+                        config6.blackEval = 10; // -BBB- on whites turn, for black
+                    }
+                    if (Depth == 4) {
+                        config6.whiteEval = -10; // -BBB- on whites turn, for white
+                        config6.blackEval = 20; // -BBB- on blacks turn, for black
+                    }
+                }
+                if ((isCoordInArrayList(upperRight3,scenario.whiteMoves) && !isCoordInArrayList(lowerLeft,scenario.whiteMoves)) || (!isCoordInArrayList(upperRight3,scenario.whiteMoves) && isCoordInArrayList(lowerLeft,scenario.whiteMoves))){
+                    if(scenario.isKeryoRules) {
+                        config6.blackPriority = 4;
+                        config6.whitePriority = 3;
+                        if (Depth == 3 || Depth == 5) {
+                            config6.whiteEval = -10; // -WBBB- on blacks turn, for white
+                            config6.blackEval = -10; // -WBBB- on whites turn, for black
+                        }
+                        if (Depth == 4) {
+                            config6.whiteEval = 10; // -WBBB- on whites turn, for white
+                            config6.blackEval = 10; // -WBBB- on blacks turn, for black
+                        }
+                    }
+                    if(!scenario.isKeryoRules) {
+                        config6.blackPriority = 5;
+                        config6.whitePriority = 6;
+                        if (Depth == 3 || Depth == 5) {
+                            config6.whiteEval = -10; // -WBBB- on blacks turn, for white
+                            config6.blackEval = 5; // -WBBB- on whites turn, for black
+                        }
+                        if (Depth == 4) {
+                            config6.whiteEval = -5; // -WBBB- on whites turn, for white
+                            config6.blackEval = 10; // -WBBB- on blacks turn, for black
+                        }
+                    }
                 }
                 config6.blackCounterMoves.add(upperRight3);
                 config6.blackCounterMoves.add(lowerLeft);
@@ -1009,13 +1531,44 @@ public class PenteComputerPlayer {
                 config7.blackPriority = highPriority;
                 config7.whitePriority = lowPriority;
                 config7.originCoord = coord;
-                config7.blackEval = -blackEval;
-                config7.whiteEval = -whiteEval;
+
                 if (!isCoordInArrayList(right3,scenario.whiteMoves) && !isCoordInArrayList(left,scenario.whiteMoves)){
-                    config7.whitePriority = config7.whitePriority - 2;
-                    config7.blackPriority = config7.blackPriority - 2;
-                    config7.whiteEval = -whiteEval*2;
-                    config7.blackEval = -blackEval*2;
+                    config7.blackPriority = 3;
+                    config7.whitePriority = 4;
+                    if (Depth == 3 || Depth == 5){
+                        config7.whiteEval = -20; // -BBB- on blacks turn, for white
+                        config7.blackEval = 10; // -BBB- on whites turn, for black
+                    }
+                    if (Depth == 4) {
+                        config7.whiteEval = -10; // -BBB- on whites turn, for white
+                        config7.blackEval = 20; // -BBB- on blacks turn, for black
+                    }
+                }
+                if ((isCoordInArrayList(right3,scenario.whiteMoves) && !isCoordInArrayList(left,scenario.whiteMoves)) || (!isCoordInArrayList(right3,scenario.whiteMoves) && isCoordInArrayList(left,scenario.whiteMoves))){
+                    if(scenario.isKeryoRules) {
+                        config7.blackPriority = 4;
+                        config7.whitePriority = 3;
+                        if (Depth == 3 || Depth == 5) {
+                            config7.whiteEval = -10; // -WBBB- on blacks turn, for white
+                            config7.blackEval = -10; // -WBBB- on whites turn, for black
+                        }
+                        if (Depth == 4) {
+                            config7.whiteEval = 10; // -WBBB- on whites turn, for white
+                            config7.blackEval = 10; // -WBBB- on blacks turn, for black
+                        }
+                    }
+                    if(!scenario.isKeryoRules) {
+                        config7.blackPriority = 5;
+                        config7.whitePriority = 6;
+                        if (Depth == 3 || Depth == 5) {
+                            config7.whiteEval = -10; // -WBBB- on blacks turn, for white
+                            config7.blackEval = 5; // -WBBB- on whites turn, for black
+                        }
+                        if (Depth == 4) {
+                            config7.whiteEval = -5; // -WBBB- on whites turn, for white
+                            config7.blackEval = 10; // -WBBB- on blacks turn, for black
+                        }
+                    }
                 }
                 config7.blackCounterMoves.add(right3);
                 config7.blackCounterMoves.add(left);
@@ -1044,13 +1597,43 @@ public class PenteComputerPlayer {
                 config8.blackPriority = highPriority;
                 config8.whitePriority = lowPriority;
                 config8.originCoord = coord;
-                config8.blackEval = -blackEval;
-                config8.whiteEval = -whiteEval;
                 if (!isCoordInArrayList(lowerRight3,scenario.whiteMoves) && !isCoordInArrayList(upperLeft,scenario.whiteMoves)){
-                    config8.whitePriority = config8.whitePriority - 2;
-                    config8.blackPriority = config8.blackPriority - 2;
-                    config8.whiteEval = -whiteEval*2;
-                    config8.blackEval = -blackEval*2;
+                    config8.blackPriority = 3;
+                    config8.whitePriority = 4;
+                    if (Depth == 3 || Depth == 5){
+                        config8.whiteEval = -20; // -BBB- on blacks turn, for white
+                        config8.blackEval = 10; // -BBB- on whites turn, for black
+                    }
+                    if (Depth == 4) {
+                        config8.whiteEval = -10; // -BBB- on whites turn, for white
+                        config8.blackEval = 20; // -BBB- on blacks turn, for black
+                    }
+                }
+                if ((isCoordInArrayList(lowerRight3,scenario.whiteMoves) && !isCoordInArrayList(upperLeft,scenario.whiteMoves)) || (!isCoordInArrayList(lowerRight3,scenario.whiteMoves) && isCoordInArrayList(upperLeft,scenario.whiteMoves))){
+                    if(scenario.isKeryoRules) {
+                        config8.blackPriority = 4;
+                        config8.whitePriority = 3;
+                        if (Depth == 3 || Depth == 5) {
+                            config8.whiteEval = -10; // -WBBB- on blacks turn, for white
+                            config8.blackEval = -10; // -WBBB- on whites turn, for black
+                        }
+                        if (Depth == 4) {
+                            config8.whiteEval = 10; // -WBBB- on whites turn, for white
+                            config8.blackEval = 10; // -WBBB- on blacks turn, for black
+                        }
+                    }
+                    if(!scenario.isKeryoRules) {
+                        config8.blackPriority = 5;
+                        config8.whitePriority = 6;
+                        if (Depth == 3 || Depth == 5) {
+                            config8.whiteEval = -10; // -WBBB- on blacks turn, for white
+                            config8.blackEval = 5; // -WBBB- on whites turn, for black
+                        }
+                        if (Depth == 4) {
+                            config8.whiteEval = -5; // -WBBB- on whites turn, for white
+                            config8.blackEval = 10; // -WBBB- on blacks turn, for black
+                        }
+                    }
                 }
                 config8.blackCounterMoves.add(lowerRight3);
                 config8.blackCounterMoves.add(upperLeft);
