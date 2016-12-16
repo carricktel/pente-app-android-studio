@@ -13,6 +13,8 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.RelativeLayout;
+//import com.google.android.gms.ads.AdRequest;
+//import com.google.android.gms.ads.AdView;
 
 /**
  * Created by Joseph Carrick on 11/26/2016.
@@ -24,6 +26,8 @@ public class PlayingGame extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //MobileAds.initialize(getApplicationContext(), "ca-app-pub-4041696999574779/5202552046");
+
         penteObj = (Pente) getIntent().getSerializableExtra("Pente");
         //penteObj.logPenteObj();
         setContentView(R.layout.playing_game);

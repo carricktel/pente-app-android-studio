@@ -14,18 +14,18 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/gameview"/>-->
- <!--   <com.google.android.gms.ads.AdView
+    <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id">
+        ads:adUnitId="@string/ca-app-pub-4041696999574779/5202552046">
     </com.google.android.gms.ads.AdView>
-    <android.support.v7.widget.RecyclerView
+  <!--  <android.support.v7.widget.RecyclerView
         android:id="@+id/messageRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/adView"/>-->
+        android:layout_below="@+id/adView"/> -->
 </RelativeLayout>

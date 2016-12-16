@@ -59,10 +59,11 @@ public class PenteComputerPlayer {
         boolean priority1Exists = false;
         boolean priority2Exists = false;
         boolean priority3Exists = false;
+        boolean priority4Exists = false;
         for (int h = 0; h <= priorityLevels; h++){
             for (int i = 0; i < confListSize; i++){
                 if (forWhite){
-                    if (configsList.get(i).whitePriority == h && ((h > 3 && !priority3Exists && !priority1Exists && !priority2Exists) || (h == 3 && !priority1Exists && !priority2Exists) || (h == 2 && !priority1Exists) || (h == 1))){
+                    if (configsList.get(i).whitePriority == h && ((h > 4 && !priority4Exists && !priority3Exists && !priority1Exists && !priority2Exists) || (h == 4 && !priority3Exists && !priority1Exists && !priority2Exists) || (h == 3 && !priority1Exists && !priority2Exists) || (h == 2 && !priority1Exists) || (h == 1))){
                         for (int j = 0; j < configsList.get(i).whiteCounterMoves.size(); j++){
                             if (c < MovesQueueLength){
                                 if (!isCoordInArrayList(configsList.get(i).whiteCounterMoves.get(j),scenario.blackMoves) && (!isCoordInArrayList(configsList.get(i).whiteCounterMoves.get(j),scenario.whiteMoves)) && (isCoordInBounds(configsList.get(i).whiteCounterMoves.get(j)))){
@@ -83,6 +84,9 @@ public class PenteComputerPlayer {
                                     if (h == 3){
                                         priority3Exists = true;
                                     }
+                                    if (h == 4){
+                                        priority4Exists = true;
+                                    }
 
 
                                 }
@@ -91,7 +95,7 @@ public class PenteComputerPlayer {
                     }
                 }
                 else {
-                    if (configsList.get(i).blackPriority == h && ((h > 3 && !priority3Exists && !priority1Exists && !priority2Exists) || (h == 3 && !priority1Exists && !priority2Exists) || (h == 2 && !priority1Exists) || (h == 1))){
+                    if (configsList.get(i).blackPriority == h && ((h > 4 && !priority4Exists && !priority3Exists && !priority1Exists && !priority2Exists) || (h == 4 && !priority3Exists && !priority1Exists && !priority2Exists) || (h == 3 && !priority1Exists && !priority2Exists) || (h == 2 && !priority1Exists) || (h == 1))){
                         for (int j = 0; j < configsList.get(i).blackCounterMoves.size(); j++){
                             if (c < MovesQueueLength){
                                 if (!isCoordInArrayList(configsList.get(i).blackCounterMoves.get(j),scenario.blackMoves) && (!isCoordInArrayList(configsList.get(i).blackCounterMoves.get(j),scenario.whiteMoves)) && (isCoordInBounds(configsList.get(i).blackCounterMoves.get(j)))){
@@ -111,6 +115,9 @@ public class PenteComputerPlayer {
                                     }
                                     if (h == 3){
                                         priority3Exists = true;
+                                    }
+                                    if (h == 4){
+                                        priority4Exists = true;
                                     }
                                 }
                             }
@@ -2211,8 +2218,8 @@ public class PenteComputerPlayer {
                         config1.whitePriority = highPriority;
                         config1.blackPriority = lowPriority;
 
-                        config1.whiteEval = 10;
-                        config1.blackEval = -10;
+                        config1.whiteEval = 20;
+                        config1.blackEval = -20;
 
                         config1.whiteCounterMoves.add(upper);
 
@@ -2272,8 +2279,8 @@ public class PenteComputerPlayer {
                         config1.whitePriority = highPriority - 2;
                         config1.blackPriority = lowPriority - 2;
 
-                        config1.whiteEval = 20;
-                        config1.blackEval = -20;
+                        config1.whiteEval = 25;
+                        config1.blackEval = -25;
 
                         config1.whiteCounterMoves.add(upper);
 
@@ -2334,8 +2341,8 @@ public class PenteComputerPlayer {
                         config1.whitePriority = highPriority - 2;
                         config1.blackPriority = lowPriority - 2;
 
-                        config1.whiteEval = 20;
-                        config1.blackEval = -20;
+                        config1.whiteEval = 25;
+                        config1.blackEval = -25;
 
                         config1.whiteCounterMoves.add(upper);
 
@@ -2351,8 +2358,8 @@ public class PenteComputerPlayer {
                         config1.whitePriority = highPriority - 2;
                         config1.blackPriority = lowPriority - 2;
 
-                        config1.whiteEval = 20;
-                        config1.blackEval = -20;
+                        config1.whiteEval = 25;
+                        config1.blackEval = -25;
 
                         config1.whiteCounterMoves.add(upper);
 
@@ -2375,8 +2382,8 @@ public class PenteComputerPlayer {
                     config1.whitePriority = highPriority;
                     config1.blackPriority = lowPriority;
 
-                    config1.whiteEval = 10;
-                    config1.blackEval = -10;
+                    config1.whiteEval = 20;
+                    config1.blackEval = -20;
 
                     config1.whiteCounterMoves.add(upper);
 
@@ -2386,8 +2393,9 @@ public class PenteComputerPlayer {
                     configsList.add(config1);
                 }
 
-                // -BW-WW-
+                /*// -BW-WW-
                 if ((isCoordInArrayList(lower,scenario.blackMoves) &&
+                        isCoordInArrayList(upper3,scenario.blackMoves) &&
                         !isCoordInArrayList(upper4,scenario.whiteMoves) &&
                         !isCoordInArrayList(upper4,scenario.blackMoves) &&
                         !isCoordInArrayList(lower2,scenario.whiteMoves) &&
@@ -2409,7 +2417,7 @@ public class PenteComputerPlayer {
                     config1.blackCounterMoves.add(upper);
                     config1.blackCounterMoves.add(upper3);
                     configsList.add(config1);
-                }
+                }*/
             }
 
             if (!isCoordInArrayList(upperRight,scenario.whiteMoves) &&
@@ -2429,8 +2437,8 @@ public class PenteComputerPlayer {
                         config2.whitePriority = highPriority;
                         config2.blackPriority = lowPriority;
 
-                        config2.whiteEval = 10;
-                        config2.blackEval = -10;
+                        config2.whiteEval = 20;
+                        config2.blackEval = -20;
 
 
                         config2.whiteCounterMoves.add(upperRight);
@@ -2491,8 +2499,8 @@ public class PenteComputerPlayer {
                         config2.whitePriority = highPriority - 2;
                         config2.blackPriority = lowPriority - 2;
 
-                        config2.whiteEval = 20;
-                        config2.blackEval = -20;
+                        config2.whiteEval = 25;
+                        config2.blackEval = -25;
 
                         config2.whiteCounterMoves.add(upperRight);
 
@@ -2545,6 +2553,7 @@ public class PenteComputerPlayer {
                         configsList.add(config2);
                     }
                     // WW-WW
+
                     if (isCoordInArrayList(upperRight3,scenario.whiteMoves)){
                         PenteConfigurations config2 = new PenteConfigurations();
                         config2.confType = 1;
@@ -2553,8 +2562,8 @@ public class PenteComputerPlayer {
                         config2.whitePriority = highPriority - 2;
                         config2.blackPriority = lowPriority - 2;
 
-                        config2.whiteEval = 20;
-                        config2.blackEval = -20;
+                        config2.whiteEval = 25;
+                        config2.blackEval = -25;
 
                         config2.whiteCounterMoves.add(upperRight);
 
@@ -2570,8 +2579,8 @@ public class PenteComputerPlayer {
                         config2.whitePriority = highPriority - 2;
                         config2.blackPriority = lowPriority - 2;
 
-                        config2.whiteEval = 20;
-                        config2.blackEval = -20;
+                        config2.whiteEval = 25;
+                        config2.blackEval = -25;
 
                         config2.whiteCounterMoves.add(upperRight);
 
@@ -2594,8 +2603,8 @@ public class PenteComputerPlayer {
                     config2.whitePriority = highPriority;
                     config2.blackPriority = lowPriority;
 
-                    config2.whiteEval = 10;
-                    config2.blackEval = -10;
+                    config2.whiteEval = 20;
+                    config2.blackEval = -20;
 
                     config2.whiteCounterMoves.add(upperRight);
 
@@ -2605,30 +2614,30 @@ public class PenteComputerPlayer {
                     configsList.add(config2);
                 }
 
-                // -BW-WW-
-                if ((isCoordInArrayList(lowerLeft,scenario.blackMoves) &&
-                        !isCoordInArrayList(upperRight4,scenario.whiteMoves) &&
-                        !isCoordInArrayList(upperRight4,scenario.blackMoves) &&
-                        !isCoordInArrayList(lowerLeft2,scenario.whiteMoves) &&
-                        !isCoordInArrayList(lowerLeft2,scenario.blackMoves))){
-                    PenteConfigurations config2 = new PenteConfigurations();
-                    config2.confType = 1;
-                    config2.direction = 90;
-                    config2.isWhite = true;
+ /*// -BW-WW-
+ if ((isCoordInArrayList(lowerLeft,scenario.blackMoves) &&
+         !isCoordInArrayList(upperRight4,scenario.whiteMoves) &&
+         !isCoordInArrayList(upperRight4,scenario.blackMoves) &&
+         !isCoordInArrayList(lowerLeft2,scenario.whiteMoves) &&
+         !isCoordInArrayList(lowerLeft2,scenario.blackMoves))){
+     PenteConfigurations config2 = new PenteConfigurations();
+     config2.confType = 1;
+     config2.direction = 90;
+     config2.isWhite = true;
 
-                    config2.whitePriority = highPriority;
-                    config2.blackPriority = lowPriority;
+     config2.whitePriority = highPriority;
+     config2.blackPriority = lowPriority;
 
-                    config2.whiteEval = 10;
-                    config2.blackEval = -10;
+     config2.whiteEval = 20;
+     config2.blackEval = -20;
 
-                    config2.whiteCounterMoves.add(upperRight);
-                    config2.whiteCounterMoves.add(upperRight3);
+     config2.whiteCounterMoves.add(upperRight);
+     config2.whiteCounterMoves.add(upperRight3);
 
-                    config2.blackCounterMoves.add(upperRight);
-                    config2.blackCounterMoves.add(upperRight3);
-                    configsList.add(config2);
-                }
+     config2.blackCounterMoves.add(upperRight);
+     config2.blackCounterMoves.add(upperRight3);
+     configsList.add(config2);
+ }*/
             }
             if (!isCoordInArrayList(right,scenario.whiteMoves) &&
                     !isCoordInArrayList(right,scenario.blackMoves) &&
@@ -2647,8 +2656,8 @@ public class PenteComputerPlayer {
                         config3.whitePriority = highPriority;
                         config3.blackPriority = lowPriority;
 
-                        config3.whiteEval = 10;
-                        config3.blackEval = -10;
+                        config3.whiteEval = 20;
+                        config3.blackEval = -20;
 
                         config3.whiteCounterMoves.add(right);
 
@@ -2708,8 +2717,8 @@ public class PenteComputerPlayer {
                         config3.whitePriority = highPriority - 2;
                         config3.blackPriority = lowPriority - 2;
 
-                        config3.whiteEval = 20;
-                        config3.blackEval = -20;
+                        config3.whiteEval = 25;
+                        config3.blackEval = -25;
 
                         config3.whiteCounterMoves.add(right);
 
@@ -2770,8 +2779,8 @@ public class PenteComputerPlayer {
                         config3.whitePriority = highPriority - 2;
                         config3.blackPriority = lowPriority - 2;
 
-                        config3.whiteEval = 20;
-                        config3.blackEval = -20;
+                        config3.whiteEval = 25;
+                        config3.blackEval = -25;
 
                         config3.whiteCounterMoves.add(right);
 
@@ -2787,8 +2796,8 @@ public class PenteComputerPlayer {
                         config3.whitePriority = highPriority - 2;
                         config3.blackPriority = lowPriority - 2;
 
-                        config3.whiteEval = 20;
-                        config3.blackEval = -20;
+                        config3.whiteEval = 25;
+                        config3.blackEval = -25;
 
                         config3.whiteCounterMoves.add(right);
 
@@ -2811,8 +2820,8 @@ public class PenteComputerPlayer {
                     config3.whitePriority = highPriority;
                     config3.blackPriority = lowPriority;
 
-                    config3.whiteEval = 10;
-                    config3.blackEval = -10;
+                    config3.whiteEval = 20;
+                    config3.blackEval = -20;
 
                     config3.whiteCounterMoves.add(right);
 
@@ -2822,30 +2831,30 @@ public class PenteComputerPlayer {
                     configsList.add(config3);
                 }
 
-                // -BW-WW-
-                if ((isCoordInArrayList(left,scenario.blackMoves) &&
-                        !isCoordInArrayList(right4,scenario.whiteMoves) &&
-                        !isCoordInArrayList(right4,scenario.blackMoves) &&
-                        !isCoordInArrayList(left2,scenario.whiteMoves) &&
-                        !isCoordInArrayList(left2,scenario.blackMoves))){
-                    PenteConfigurations config3 = new PenteConfigurations();
-                    config3.confType = 1;
-                    config3.direction = 90;
-                    config3.isWhite = true;
+ /*// -BW-WW-
+ if ((isCoordInArrayList(left,scenario.blackMoves) &&
+         !isCoordInArrayList(right4,scenario.whiteMoves) &&
+         !isCoordInArrayList(right4,scenario.blackMoves) &&
+         !isCoordInArrayList(left2,scenario.whiteMoves) &&
+         !isCoordInArrayList(left2,scenario.blackMoves))){
+     PenteConfigurations config3 = new PenteConfigurations();
+     config3.confType = 1;
+     config3.direction = 90;
+     config3.isWhite = true;
 
-                    config3.whitePriority = highPriority;
-                    config3.blackPriority = lowPriority;
+     config3.whitePriority = highPriority;
+     config3.blackPriority = lowPriority;
 
-                    config3.whiteEval = 10;
-                    config3.blackEval = -10;
+     config3.whiteEval = 20;
+     config3.blackEval = -20;
 
-                    config3.whiteCounterMoves.add(right);
-                    config3.whiteCounterMoves.add(right3);
+     config3.whiteCounterMoves.add(right);
+     config3.whiteCounterMoves.add(right3);
 
-                    config3.blackCounterMoves.add(right);
-                    config3.blackCounterMoves.add(right3);
-                    configsList.add(config3);
-                }
+     config3.blackCounterMoves.add(right);
+     config3.blackCounterMoves.add(right3);
+     configsList.add(config3);
+ }*/
             }
             if (!isCoordInArrayList(lowerRight,scenario.whiteMoves) &&
                     !isCoordInArrayList(lowerRight,scenario.blackMoves) &&
@@ -2864,8 +2873,8 @@ public class PenteComputerPlayer {
                         config4.whitePriority = highPriority;
                         config4.blackPriority = lowPriority;
 
-                        config4.whiteEval = 10;
-                        config4.blackEval = -10;
+                        config4.whiteEval = 20;
+                        config4.blackEval = -20;
 
                         config4.whiteCounterMoves.add(lowerRight);
 
@@ -2925,8 +2934,8 @@ public class PenteComputerPlayer {
                         config4.whitePriority = highPriority - 2;
                         config4.blackPriority = lowPriority - 2;
 
-                        config4.whiteEval = 20;
-                        config4.blackEval = -20;
+                        config4.whiteEval = 25;
+                        config4.blackEval = -25;
 
                         config4.whiteCounterMoves.add(lowerRight);
 
@@ -2987,8 +2996,8 @@ public class PenteComputerPlayer {
                         config4.whitePriority = highPriority - 2;
                         config4.blackPriority = lowPriority - 2;
 
-                        config4.whiteEval = 20;
-                        config4.blackEval = -20;
+                        config4.whiteEval = 25;
+                        config4.blackEval = -25;
 
                         config4.whiteCounterMoves.add(lowerRight);
 
@@ -3004,8 +3013,8 @@ public class PenteComputerPlayer {
                         config4.whitePriority = highPriority - 2;
                         config4.blackPriority = lowPriority - 2;
 
-                        config4.whiteEval = 20;
-                        config4.blackEval = -20;
+                        config4.whiteEval = 25;
+                        config4.blackEval = -25;
 
                         config4.whiteCounterMoves.add(lowerRight);
 
@@ -3028,8 +3037,8 @@ public class PenteComputerPlayer {
                     config4.whitePriority = highPriority;
                     config4.blackPriority = lowPriority;
 
-                    config4.whiteEval = 10;
-                    config4.blackEval = -10;
+                    config4.whiteEval = 20;
+                    config4.blackEval = -20;
 
                     config4.whiteCounterMoves.add(lowerRight);
 
@@ -3039,30 +3048,30 @@ public class PenteComputerPlayer {
                     configsList.add(config4);
                 }
 
-                // -BW-WW-
-                if ((isCoordInArrayList(upperLeft,scenario.blackMoves) &&
-                        !isCoordInArrayList(lowerRight4,scenario.whiteMoves) &&
-                        !isCoordInArrayList(lowerRight4,scenario.blackMoves) &&
-                        !isCoordInArrayList(upperLeft2,scenario.whiteMoves) &&
-                        !isCoordInArrayList(upperLeft2,scenario.blackMoves))){
-                    PenteConfigurations config4 = new PenteConfigurations();
-                    config4.confType = 1;
-                    config4.direction = 90;
-                    config4.isWhite = true;
+/* // -BW-WW-
+ if ((isCoordInArrayList(upperLeft,scenario.blackMoves) &&
+         !isCoordInArrayList(lowerRight4,scenario.whiteMoves) &&
+         !isCoordInArrayList(lowerRight4,scenario.blackMoves) &&
+         !isCoordInArrayList(upperLeft2,scenario.whiteMoves) &&
+         !isCoordInArrayList(upperLeft2,scenario.blackMoves))){
+     PenteConfigurations config4 = new PenteConfigurations();
+     config4.confType = 1;
+     config4.direction = 90;
+     config4.isWhite = true;
 
-                    config4.whitePriority = highPriority;
-                    config4.blackPriority = lowPriority;
+     config4.whitePriority = highPriority;
+     config4.blackPriority = lowPriority;
 
-                    config4.whiteEval = 10;
-                    config4.blackEval = -10;
+     config4.whiteEval = 20;
+     config4.blackEval = -20;
 
-                    config4.whiteCounterMoves.add(lowerRight);
-                    config4.whiteCounterMoves.add(lowerRight3);
+     config4.whiteCounterMoves.add(lowerRight);
+     config4.whiteCounterMoves.add(lowerRight3);
 
-                    config4.blackCounterMoves.add(lowerRight);
-                    config4.blackCounterMoves.add(lowerRight3);
-                    configsList.add(config4);
-                }
+     config4.blackCounterMoves.add(lowerRight);
+     config4.blackCounterMoves.add(lowerRight3);
+     configsList.add(config4);
+ }*/
             }
 
 
@@ -3085,8 +3094,8 @@ public class PenteComputerPlayer {
                         config5.blackPriority = highPriority;
                         config5.whitePriority = lowPriority;
 
-                        config5.blackEval = 10;
-                        config5.whiteEval = -10;
+                        config5.blackEval = 20;
+                        config5.whiteEval = -20;
 
                         config5.blackCounterMoves.add(upper);
 
@@ -3146,8 +3155,8 @@ public class PenteComputerPlayer {
                         config5.blackPriority = highPriority - 2;
                         config5.whitePriority = lowPriority - 2;
 
-                        config5.blackEval = 20;
-                        config5.whiteEval = -20;
+                        config5.blackEval = 25;
+                        config5.whiteEval = -25;
 
                         config5.blackCounterMoves.add(upper);
 
@@ -3208,8 +3217,8 @@ public class PenteComputerPlayer {
                         config5.blackPriority = highPriority - 2;
                         config5.whitePriority = lowPriority - 2;
 
-                        config5.blackEval = 20;
-                        config5.whiteEval = -20;
+                        config5.blackEval = 25;
+                        config5.whiteEval = -25;
 
                         config5.blackCounterMoves.add(upper);
 
@@ -3225,8 +3234,8 @@ public class PenteComputerPlayer {
                         config5.blackPriority = highPriority - 2;
                         config5.whitePriority = lowPriority - 2;
 
-                        config5.blackEval = 20;
-                        config5.whiteEval = -20;
+                        config5.blackEval = 25;
+                        config5.whiteEval = -25;
 
                         config5.blackCounterMoves.add(upper);
 
@@ -3249,8 +3258,8 @@ public class PenteComputerPlayer {
                     config5.blackPriority = highPriority;
                     config5.whitePriority = lowPriority;
 
-                    config5.blackEval = 10;
-                    config5.whiteEval = -10;
+                    config5.blackEval = 20;
+                    config5.whiteEval = -20;
 
                     config5.blackCounterMoves.add(upper);
 
@@ -3260,30 +3269,30 @@ public class PenteComputerPlayer {
                     configsList.add(config5);
                 }
 
-                // -BW-WW-
-                if ((isCoordInArrayList(lower,scenario.whiteMoves) &&
-                        !isCoordInArrayList(upper4,scenario.blackMoves) &&
-                        !isCoordInArrayList(upper4,scenario.whiteMoves) &&
-                        !isCoordInArrayList(lower2,scenario.blackMoves) &&
-                        !isCoordInArrayList(lower2,scenario.whiteMoves))){
-                    PenteConfigurations config5 = new PenteConfigurations();
-                    config5.confType = 1;
-                    config5.direction = 90;
-                    config5.isWhite = false;
+ /*// -BW-WW-
+ if ((isCoordInArrayList(lower,scenario.whiteMoves) &&
+         !isCoordInArrayList(upper4,scenario.blackMoves) &&
+         !isCoordInArrayList(upper4,scenario.whiteMoves) &&
+         !isCoordInArrayList(lower2,scenario.blackMoves) &&
+         !isCoordInArrayList(lower2,scenario.whiteMoves))){
+     PenteConfigurations config5 = new PenteConfigurations();
+     config5.confType = 1;
+     config5.direction = 90;
+     config5.isWhite = false;
 
-                    config5.blackPriority = highPriority;
-                    config5.whitePriority = lowPriority;
+     config5.blackPriority = highPriority;
+     config5.whitePriority = lowPriority;
 
-                    config5.blackEval = 10;
-                    config5.whiteEval = -10;
+     config5.blackEval = 20;
+     config5.whiteEval = -20;
 
-                    config5.blackCounterMoves.add(upper);
-                    config5.blackCounterMoves.add(upper3);
+     config5.blackCounterMoves.add(upper);
+     config5.blackCounterMoves.add(upper3);
 
-                    config5.whiteCounterMoves.add(upper);
-                    config5.whiteCounterMoves.add(upper3);
-                    configsList.add(config5);
-                }
+     config5.whiteCounterMoves.add(upper);
+     config5.whiteCounterMoves.add(upper3);
+     configsList.add(config5);
+ }*/
             }
             if (!isCoordInArrayList(upperRight,scenario.blackMoves) &&
                     !isCoordInArrayList(upperRight,scenario.whiteMoves) &&
@@ -3302,8 +3311,8 @@ public class PenteComputerPlayer {
                         config6.blackPriority = highPriority;
                         config6.whitePriority = lowPriority;
 
-                        config6.blackEval = 10;
-                        config6.whiteEval = -10;
+                        config6.blackEval = 20;
+                        config6.whiteEval = -20;
 
                         config6.blackCounterMoves.add(upperRight);
 
@@ -3363,8 +3372,8 @@ public class PenteComputerPlayer {
                         config6.blackPriority = highPriority - 2;
                         config6.whitePriority = lowPriority - 2;
 
-                        config6.blackEval = 20;
-                        config6.whiteEval = -20;
+                        config6.blackEval = 25;
+                        config6.whiteEval = -25;
 
                         config6.blackCounterMoves.add(upperRight);
 
@@ -3425,8 +3434,8 @@ public class PenteComputerPlayer {
                         config6.blackPriority = highPriority - 2;
                         config6.whitePriority = lowPriority - 2;
 
-                        config6.blackEval = 20;
-                        config6.whiteEval = -20;
+                        config6.blackEval = 25;
+                        config6.whiteEval = -25;
 
                         config6.blackCounterMoves.add(upperRight);
 
@@ -3442,8 +3451,8 @@ public class PenteComputerPlayer {
                         config6.blackPriority = highPriority - 2;
                         config6.whitePriority = lowPriority - 2;
 
-                        config6.blackEval = 20;
-                        config6.whiteEval = -20;
+                        config6.blackEval = 25;
+                        config6.whiteEval = -25;
 
                         config6.blackCounterMoves.add(upperRight);
 
@@ -3466,8 +3475,8 @@ public class PenteComputerPlayer {
                     config6.blackPriority = highPriority;
                     config6.whitePriority = lowPriority;
 
-                    config6.blackEval = 10;
-                    config6.whiteEval = -10;
+                    config6.blackEval = 20;
+                    config6.whiteEval = -20;
 
                     config6.blackCounterMoves.add(upperRight);
 
@@ -3477,30 +3486,30 @@ public class PenteComputerPlayer {
                     configsList.add(config6);
                 }
 
-                // -BW-WW-
-                if ((isCoordInArrayList(lowerLeft,scenario.whiteMoves) &&
-                        !isCoordInArrayList(upperRight4,scenario.blackMoves) &&
-                        !isCoordInArrayList(upperRight4,scenario.whiteMoves) &&
-                        !isCoordInArrayList(lowerLeft2,scenario.blackMoves) &&
-                        !isCoordInArrayList(lowerLeft2,scenario.whiteMoves))){
-                    PenteConfigurations config6 = new PenteConfigurations();
-                    config6.confType = 1;
-                    config6.direction = 45;
-                    config6.isWhite = false;
+ /*// -BW-WW-
+ if ((isCoordInArrayList(lowerLeft,scenario.whiteMoves) &&
+         !isCoordInArrayList(upperRight4,scenario.blackMoves) &&
+         !isCoordInArrayList(upperRight4,scenario.whiteMoves) &&
+         !isCoordInArrayList(lowerLeft2,scenario.blackMoves) &&
+         !isCoordInArrayList(lowerLeft2,scenario.whiteMoves))){
+     PenteConfigurations config6 = new PenteConfigurations();
+     config6.confType = 1;
+     config6.direction = 45;
+     config6.isWhite = false;
 
-                    config6.blackPriority = highPriority;
-                    config6.whitePriority = lowPriority;
+     config6.blackPriority = highPriority;
+     config6.whitePriority = lowPriority;
 
-                    config6.blackEval = 10;
-                    config6.whiteEval = -10;
+     config6.blackEval = 20;
+     config6.whiteEval = -20;
 
-                    config6.blackCounterMoves.add(upperRight);
-                    config6.blackCounterMoves.add(upperRight4);
+     config6.blackCounterMoves.add(upperRight);
+     config6.blackCounterMoves.add(upperRight4);
 
-                    config6.whiteCounterMoves.add(upperRight);
-                    config6.whiteCounterMoves.add(upperRight4);
-                    configsList.add(config6);
-                }
+     config6.whiteCounterMoves.add(upperRight);
+     config6.whiteCounterMoves.add(upperRight4);
+     configsList.add(config6);
+ }*/
             }
 
             if (!isCoordInArrayList(right,scenario.blackMoves) &&
@@ -3520,8 +3529,8 @@ public class PenteComputerPlayer {
                         config7.blackPriority = highPriority;
                         config7.whitePriority = lowPriority;
 
-                        config7.blackEval = 10;
-                        config7.whiteEval = -10;
+                        config7.blackEval = 20;
+                        config7.whiteEval = -20;
 
                         config7.blackCounterMoves.add(right);
 
@@ -3581,8 +3590,8 @@ public class PenteComputerPlayer {
                         config7.blackPriority = highPriority - 2;
                         config7.whitePriority = lowPriority - 2;
 
-                        config7.blackEval = 20;
-                        config7.whiteEval = -20;
+                        config7.blackEval = 25;
+                        config7.whiteEval = -25;
 
                         config7.blackCounterMoves.add(right);
 
@@ -3643,8 +3652,8 @@ public class PenteComputerPlayer {
                         config7.blackPriority = highPriority - 2;
                         config7.whitePriority = lowPriority - 2;
 
-                        config7.blackEval = 20;
-                        config7.whiteEval = -20;
+                        config7.blackEval = 25;
+                        config7.whiteEval = -25;
 
                         config7.blackCounterMoves.add(right);
 
@@ -3660,8 +3669,8 @@ public class PenteComputerPlayer {
                         config7.blackPriority = highPriority - 2;
                         config7.whitePriority = lowPriority - 2;
 
-                        config7.blackEval = 20;
-                        config7.whiteEval = -20;
+                        config7.blackEval = 25;
+                        config7.whiteEval = -25;
 
                         config7.blackCounterMoves.add(right);
 
@@ -3684,8 +3693,8 @@ public class PenteComputerPlayer {
                     config7.blackPriority = highPriority;
                     config7.whitePriority = lowPriority;
 
-                    config7.blackEval = 10;
-                    config7.whiteEval = -10;
+                    config7.blackEval = 20;
+                    config7.whiteEval = -20;
 
                     config7.blackCounterMoves.add(right);
 
@@ -3695,30 +3704,30 @@ public class PenteComputerPlayer {
                     configsList.add(config7);
                 }
 
-                // -BW-WW-
-                if ((isCoordInArrayList(left,scenario.whiteMoves) &&
-                        !isCoordInArrayList(right4,scenario.blackMoves) &&
-                        !isCoordInArrayList(right4,scenario.whiteMoves) &&
-                        !isCoordInArrayList(left2,scenario.blackMoves) &&
-                        !isCoordInArrayList(left2,scenario.whiteMoves))){
-                    PenteConfigurations config7 = new PenteConfigurations();
-                    config7.confType = 1;
-                    config7.direction = 45;
-                    config7.isWhite = false;
+ /*// -BW-WW-
+ if ((isCoordInArrayList(left,scenario.whiteMoves) &&
+         !isCoordInArrayList(right4,scenario.blackMoves) &&
+         !isCoordInArrayList(right4,scenario.whiteMoves) &&
+         !isCoordInArrayList(left2,scenario.blackMoves) &&
+         !isCoordInArrayList(left2,scenario.whiteMoves))){
+     PenteConfigurations config7 = new PenteConfigurations();
+     config7.confType = 1;
+     config7.direction = 45;
+     config7.isWhite = false;
 
-                    config7.blackPriority = highPriority;
-                    config7.whitePriority = lowPriority;
+     config7.blackPriority = highPriority;
+     config7.whitePriority = lowPriority;
 
-                    config7.blackEval = 10;
-                    config7.whiteEval = -10;
+     config7.blackEval = 20;
+     config7.whiteEval = -20;
 
-                    config7.blackCounterMoves.add(right);
-                    config7.blackCounterMoves.add(right3);
+     config7.blackCounterMoves.add(right);
+     config7.blackCounterMoves.add(right3);
 
-                    config7.whiteCounterMoves.add(right);
-                    config7.whiteCounterMoves.add(right3);
-                    configsList.add(config7);
-                }
+     config7.whiteCounterMoves.add(right);
+     config7.whiteCounterMoves.add(right3);
+     configsList.add(config7);
+ }*/
             }
             if (!isCoordInArrayList(lowerRight,scenario.blackMoves) &&
                     !isCoordInArrayList(lowerRight,scenario.whiteMoves) &&
@@ -3737,8 +3746,8 @@ public class PenteComputerPlayer {
                         config8.blackPriority = highPriority;
                         config8.whitePriority = lowPriority;
 
-                        config8.blackEval = 10;
-                        config8.whiteEval = -10;
+                        config8.blackEval = 20;
+                        config8.whiteEval = -20;
 
                         config8.blackCounterMoves.add(lowerRight);
 
@@ -3798,8 +3807,8 @@ public class PenteComputerPlayer {
                         config8.blackPriority = highPriority - 2;
                         config8.whitePriority = lowPriority - 2;
 
-                        config8.blackEval = 20;
-                        config8.whiteEval = -20;
+                        config8.blackEval = 25;
+                        config8.whiteEval = -25;
 
                         config8.blackCounterMoves.add(lowerRight);
 
@@ -3860,8 +3869,8 @@ public class PenteComputerPlayer {
                         config8.blackPriority = highPriority - 2;
                         config8.whitePriority = lowPriority - 2;
 
-                        config8.blackEval = 20;
-                        config8.whiteEval = -20;
+                        config8.blackEval = 25;
+                        config8.whiteEval = -25;
 
                         config8.blackCounterMoves.add(lowerRight);
 
@@ -3877,8 +3886,8 @@ public class PenteComputerPlayer {
                         config8.blackPriority = highPriority - 2;
                         config8.whitePriority = lowPriority - 2;
 
-                        config8.blackEval = 20;
-                        config8.whiteEval = -20;
+                        config8.blackEval = 25;
+                        config8.whiteEval = -25;
 
                         config8.blackCounterMoves.add(lowerRight);
 
@@ -3901,8 +3910,8 @@ public class PenteComputerPlayer {
                     config8.blackPriority = highPriority;
                     config8.whitePriority = lowPriority;
 
-                    config8.blackEval = 10;
-                    config8.whiteEval = -10;
+                    config8.blackEval = 20;
+                    config8.whiteEval = -20;
 
                     config8.blackCounterMoves.add(lowerRight);
 
@@ -3912,30 +3921,30 @@ public class PenteComputerPlayer {
                     configsList.add(config8);
                 }
 
-                // -BW-WW-
-                if ((isCoordInArrayList(upperLeft,scenario.whiteMoves) &&
-                        !isCoordInArrayList(lowerRight4,scenario.blackMoves) &&
-                        !isCoordInArrayList(lowerRight4,scenario.whiteMoves) &&
-                        !isCoordInArrayList(upperLeft2,scenario.blackMoves) &&
-                        !isCoordInArrayList(upperLeft2,scenario.whiteMoves))){
-                    PenteConfigurations config8 = new PenteConfigurations();
-                    config8.confType = 1;
-                    config8.direction = 45;
-                    config8.isWhite = false;
+ /*// -BW-WW-
+ if ((isCoordInArrayList(upperLeft,scenario.whiteMoves) &&
+         !isCoordInArrayList(lowerRight4,scenario.blackMoves) &&
+         !isCoordInArrayList(lowerRight4,scenario.whiteMoves) &&
+         !isCoordInArrayList(upperLeft2,scenario.blackMoves) &&
+         !isCoordInArrayList(upperLeft2,scenario.whiteMoves))){
+     PenteConfigurations config8 = new PenteConfigurations();
+     config8.confType = 1;
+     config8.direction = 45;
+     config8.isWhite = false;
 
-                    config8.blackPriority = highPriority;
-                    config8.whitePriority = lowPriority;
+     config8.blackPriority = highPriority;
+     config8.whitePriority = lowPriority;
 
-                    config8.blackEval = 10;
-                    config8.whiteEval = -10;
+     config8.blackEval = 20;
+     config8.whiteEval = -20;
 
-                    config8.blackCounterMoves.add(lowerRight);
-                    config8.blackCounterMoves.add(lowerRight3);
+     config8.blackCounterMoves.add(lowerRight);
+     config8.blackCounterMoves.add(lowerRight3);
 
-                    config8.whiteCounterMoves.add(lowerRight);
-                    config8.whiteCounterMoves.add(lowerRight3);
-                    configsList.add(config8);
-                }
+     config8.whiteCounterMoves.add(lowerRight);
+     config8.whiteCounterMoves.add(lowerRight3);
+     configsList.add(config8);
+ }*/
             }
         }
         return configsList;
@@ -3955,7 +3964,7 @@ public class PenteComputerPlayer {
             if (partialConfList2 != null){
                 configList.addAll(partialConfList2);
             }
-            ArrayList<PenteConfigurations> partialConfList3 = findConfig3(true,scenario.whiteMoves.get(i),scenario, 2, 1, 20, -20);
+            ArrayList<PenteConfigurations> partialConfList3 = findConfig3(true,scenario.whiteMoves.get(i),scenario, 2, 1, 30, -30);
             if (partialConfList3 != null){
                 configList.addAll(partialConfList3);
             }
@@ -3983,7 +3992,7 @@ public class PenteComputerPlayer {
             }
 
             //-BBBB- , WBBBB-
-            ArrayList<PenteConfigurations> partialConfList10 = findConfig3(false,scenario.blackMoves.get(i),scenario, 2, 1, 20, -20);
+            ArrayList<PenteConfigurations> partialConfList10 = findConfig3(false,scenario.blackMoves.get(i),scenario, 2, 1, 30, -30);
             if (partialConfList10 != null){
                 configList.addAll(partialConfList10);
             }
@@ -4044,9 +4053,9 @@ public class PenteComputerPlayer {
                 //System.out.println("congEval: " + configurationsList.get(i).blackEval * Math.pow(10, Depth - 3));
             }
             evalScore += -(scenario.whitesMatchPoints * 10 * Math.pow(10, Depth - 2));
-            evalScore += -(scenario.whitesTotalPoints * 15 * Math.pow(10, Depth - 2));
+            evalScore += -(scenario.whitesTotalPoints * 30 * Math.pow(10, Depth - 2));
             evalScore += (scenario.blacksMatchPoints * 10 * Math.pow(10, Depth - 2));
-            evalScore += (scenario.blacksTotalPoints * 15 * Math.pow(10, Depth - 2));
+            evalScore += (scenario.blacksTotalPoints * 30 * Math.pow(10, Depth - 2));
             //System.out.println("pointsEval: " + scenario.blacksMatchPoints * 10 * Math.pow(10, Depth - 2));
 			/*evalScore += -(scenario.whitesMatchPoints * 10);
 			evalScore += -(scenario.whitesTotalPoints * 15);
